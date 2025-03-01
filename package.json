@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "@nuxtjs/tailwindcss": "6.13.1",
+    "@radix-ui/colors": "^3.0.0",
     "@tiptap-pro/extension-drag-handle": "^2.17.5",
     "@tiptap/extension-bubble-menu": "^2.11.5",
     "@tiptap/extension-placeholder": "^2.11.5",
@@ -21,6 +22,7 @@
     "@vueuse/nuxt": "12.7.0",
     "nuxt": "^3.15.4",
     "sass": "^1.85.1",
+    "tailwindcss-animate": "^1.0.7",
     "tippy.js": "^6.3.7",
     "vue": "latest",
     "vue-router": "latest"

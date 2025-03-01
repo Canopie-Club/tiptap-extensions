@@ -68,8 +68,8 @@ import StarterKit from "@tiptap/starter-kit";
 import Placeholder from "@tiptap/extension-placeholder";
 import BubbleMenu from "@tiptap/extension-bubble-menu";
 import DragHandle from "@tiptap-pro/extension-drag-handle";
-import tippy from "tippy.js";
-import "tippy.js/dist/tippy.css";
+// import tippy from "tippy.js";
+// import "tippy.js/dist/tippy.css";
 
 // State for slash command menu
 const showSlashMenu = ref(false);
@@ -168,7 +168,17 @@ onMounted(() => {
                 placeholder: "Type / to open menu…",
             }),
             DragHandle.configure({
-                // dragHandleWidth: 24,
+                render() {
+                    const element = document.createElement("div");
+
+                    element.classList.add("custom-drag-handle");
+
+                    return element;
+                },
+                tippyOptions: {
+                    placement: "left",
+                    touch: "hold",
+                },
             }),
         ],
         content: "<p>Welcome to your new editor!</p>",
@@ -225,176 +235,180 @@ onBeforeUnmount(() => {
 
 <style lang="scss">
 .editor-wrapper {
-    position: relative;
+    @apply relative mx-auto overflow-hidden rounded-lg border border-gray-200 bg-white;
     max-width: 800px;
-    margin: 0 auto;
-    border: 1px solid #e2e8f0;
-    border-radius: 0.5rem;
-    overflow: hidden;
-    background: white;
-}
 
-.editor-content {
-    padding: 1.5rem;
-    min-height: 400px;
-    color: #1a202c;
-}
+    .editor-content {
+        @apply min-h-[400px] p-6 text-gray-900;
 
-.editor-content p {
-    margin: 1em 0;
-    line-height: 1.5;
-}
+        .tiptap {
+            @apply focus-visible:outline-none focus-within:outline-none;
+            /* @apply outline-none; */
+        }
 
-.editor-content h1 {
-    font-size: 1.875rem;
-    font-weight: 700;
-    margin-top: 1.5rem;
-    margin-bottom: 1rem;
-}
+        p {
+            @apply my-4 leading-relaxed;
+            @apply focus-visible:outline-none;
+        }
 
-.editor-content h2 {
-    font-size: 1.5rem;
-    font-weight: 600;
-    margin-top: 1.5rem;
-    margin-bottom: 0.75rem;
-}
+        h1 {
+            @apply mb-4 mt-6 text-2xl font-bold;
+        }
 
-.editor-content ul,
-.editor-content ol {
-    padding-left: 1.5rem;
-    margin: 1rem 0;
-}
+        h2 {
+            @apply mb-3 mt-6 text-xl font-semibold;
+        }
 
-.editor-content ul li,
-.editor-content ol li {
-    margin-bottom: 0.5rem;
-}
+        ul,
+        ol {
+            @apply my-4 pl-6;
 
-.editor-content blockquote {
-    border-left: 3px solid #e2e8f0;
-    padding-left: 1rem;
-    margin-left: 0;
-    margin-right: 0;
-    color: #4a5568;
-}
+            li {
+                @apply mb-2;
+            }
+        }
 
-/* Drag handle styling */
-.tiptap-drag-handle {
-    position: absolute;
-    width: 24px;
-    height: 24px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: #f7fafc;
-    border-radius: 4px;
-    border: 1px solid #e2e8f0;
-    cursor: move;
-    opacity: 0;
-    transition: opacity 0.2s ease;
-}
+        blockquote {
+            @apply mx-0 my-4 border-l-4 border-gray-200 pl-4 text-gray-600;
+        }
+    }
 
-.tiptap-drag-handle:hover {
-    opacity: 1;
-    background: #edf2f7;
-}
+    /* .tiptap-drag-handle {
+        @apply absolute flex h-6 w-6 cursor-move items-center justify-center rounded border border-gray-200 bg-gray-50 opacity-0 transition-opacity duration-200;
 
-p:hover .tiptap-drag-handle,
-h1:hover .tiptap-drag-handle,
-h2:hover .tiptap-drag-handle,
-li:hover .tiptap-drag-handle,
-blockquote:hover .tiptap-drag-handle {
-    opacity: 0.5;
-}
+        &:hover {
+            @apply bg-gray-100 opacity-100;
+        }
+    } */
 
-/* Bubble menu styling */
-.bubble-menu-container {
-    display: flex;
-    background-color: white;
-    border-radius: 0.375rem;
-    box-shadow:
-        0 4px 6px -1px rgba(0, 0, 0, 0.1),
-        0 2px 4px -1px rgba(0, 0, 0, 0.06);
-    overflow: hidden;
-    padding: 0.25rem;
-}
+    p,
+    h1,
+    h2,
+    li,
+    blockquote {
+        &:hover .tiptap-drag-handle {
+            @apply opacity-50;
+        }
+    }
 
-.bubble-menu-button {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 2rem;
-    height: 2rem;
-    border: none;
-    background: transparent;
-    border-radius: 0.25rem;
-    margin: 0 0.125rem;
-    cursor: pointer;
-    transition: background-color 0.2s;
-}
+    .bubble-menu-container {
+        @apply flex rounded-md bg-white p-1 shadow-lg;
 
-.bubble-menu-button:hover {
-    background-color: #f7fafc;
-}
+        .bubble-menu-button {
+            @apply flex h-8 w-8 cursor-pointer items-center justify-center rounded border-none bg-transparent transition-colors duration-200 mx-0.5;
 
-.bubble-menu-button.is-active {
-    background-color: #edf2f7;
-    color: var(--primary-color, #4f46e5);
-}
+            &:hover {
+                @apply bg-gray-50;
+            }
 
-.bubble-icon {
-    font-size: 0.875rem;
-    font-weight: bold;
-}
+            &.is-active {
+                @apply bg-gray-100 text-gray-500;
+                /* @apply bg-gray-100 text-primary-500; */
+            }
 
-/* Slash menu styling */
-.slash-menu {
-    position: absolute;
-    background: white;
-    border-radius: 0.375rem;
-    box-shadow:
-        0 4px 6px -1px rgba(0, 0, 0, 0.1),
-        0 2px 4px -1px rgba(0, 0, 0, 0.06);
-    overflow: hidden;
-    z-index: 10;
-    min-width: 280px;
-}
+            .bubble-icon {
+                @apply text-sm font-bold;
+            }
+        }
+    }
 
-.slash-menu-item {
-    display: flex;
-    align-items: center;
-    padding: 0.75rem 1rem;
-    cursor: pointer;
-    transition: background-color 0.2s;
-}
+    .slash-menu {
+        @apply absolute z-10 min-w-[280px] overflow-hidden rounded-md bg-white shadow-lg;
 
-.slash-menu-item:hover {
-    background-color: #f7fafc;
-}
+        .slash-menu-item {
+            @apply flex cursor-pointer items-center p-3 transition-colors duration-200;
 
-.slash-menu-item-icon {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 2rem;
-    height: 2rem;
-    background: #edf2f7;
-    border-radius: 0.25rem;
-    margin-right: 0.75rem;
-    font-weight: bold;
-}
+            &:hover {
+                @apply bg-gray-50;
+            }
 
-.slash-menu-item-content {
-    flex: 1;
-}
+            .slash-menu-item-icon {
+                @apply mr-3 flex h-8 w-8 items-center justify-center rounded bg-gray-100 font-bold;
+            }
 
-.slash-menu-item-title {
-    font-weight: 600;
-    margin-bottom: 0.25rem;
-}
+            .slash-menu-item-content {
+                .slash-menu-item-title {
+                    @apply font-semibold;
+                }
 
-.slash-menu-item-description {
-    font-size: 0.875rem;
-    color: #718096;
+                .slash-menu-item-description {
+                    @apply text-sm text-gray-500;
+                }
+            }
+        }
+    }
+
+    ::selection {
+        background-color: #70cff850;
+    }
+
+    .ProseMirror {
+        padding: 1rem 1rem 1rem 0;
+
+        * {
+            margin-top: 0.75em;
+        }
+
+        > * {
+            margin-left: 3rem;
+        }
+
+        .ProseMirror-widget * {
+            margin-top: auto;
+        }
+
+        ul,
+        ol {
+            padding: 0 1rem;
+        }
+    }
+
+    .ProseMirror-noderangeselection {
+        *::selection {
+            background: transparent;
+        }
+
+        * {
+            caret-color: transparent;
+        }
+    }
+
+    .ProseMirror-selectednode,
+    .ProseMirror-selectednoderange {
+        position: relative;
+
+        &::before {
+            position: absolute;
+            pointer-events: none;
+            z-index: -1;
+            content: "";
+            top: -0.25rem;
+            left: -0.25rem;
+            right: -0.25rem;
+            bottom: -0.25rem;
+            background-color: #70cff850;
+            border-radius: 0.2rem;
+        }
+    }
+
+    .custom-drag-handle {
+        /* &::after {
+            @apply flex items-center justify-center w-4 h-5 content-['⠿'] font-bold cursor-grab bg-black bg-opacity-5 text-black text-opacity-30 rounded;
+        } */
+
+        &::after {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 1rem;
+            height: 1.25rem;
+            content: "⠿";
+            font-weight: 700;
+            cursor: grab;
+            background: #0d0d0d10;
+            color: #0d0d0d50;
+            border-radius: 0.25rem;
+        }
+    }
 }
 </style>
