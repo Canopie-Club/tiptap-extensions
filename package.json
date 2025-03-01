@@ -11,7 +11,17 @@
   },
   "dependencies": {
     "@nuxtjs/tailwindcss": "6.13.1",
+    "@tiptap-pro/extension-drag-handle": "^2.17.5",
+    "@tiptap/extension-bubble-menu": "^2.11.5",
+    "@tiptap/extension-placeholder": "^2.11.5",
+    "@tiptap/pm": "^2.11.5",
+    "@tiptap/starter-kit": "^2.11.5",
+    "@tiptap/vue-3": "^2.11.5",
+    "@vueuse/core": "^12.7.0",
+    "@vueuse/nuxt": "12.7.0",
     "nuxt": "^3.15.4",
+    "sass": "^1.85.1",
+    "tippy.js": "^6.3.7",
     "vue": "latest",
     "vue-router": "latest"
   }
