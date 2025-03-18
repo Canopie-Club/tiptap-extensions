@@ -24,11 +24,10 @@
 <script lang="ts" setup>
 import { ref, onMounted, onBeforeUnmount, nextTick } from "vue";
 import { Editor, EditorContent } from "@tiptap/vue-3";
-import StarterKit from "@tiptap/starter-kit";
-import StarterExtension from "~/assets/tiptap/starter/extension.ts";
-import starterMenu from "~/assets/tiptap/starter/menu.ts";
-import BorderExtension from "~/assets/tiptap/fancyBorder/extension.ts";
-import borderMenu from "~/assets/tiptap/fancyBorder/menu.ts";
+import StarterExtension from "~/assets/tiptap/starter/extension";
+import starterMenu from "~/assets/tiptap/starter/menu";
+import BorderExtension from "~/assets/tiptap/fancyBorder/extension";
+import borderMenu from "~/assets/tiptap/fancyBorder/menu";
 import Placeholder from "@tiptap/extension-placeholder";
 import BubbleMenu from "@tiptap/extension-bubble-menu";
 
@@ -38,9 +37,6 @@ import { createDragHandleExtension } from "./extensions/DragHandleConfig";
 // Import modular components
 import EditorBubbleMenu from "./menus/BubbleMenu.vue";
 import EditorSlashMenu from "./menus/SlashMenu.vue";
-
-// Import constants and configs
-import { slashMenuItems, type SlashMenuItem } from "./constants/menuItems";
 
 // State for editor
 const editor = ref<Editor | null>(null);
