@@ -105,7 +105,7 @@ export const bulletList: SlashMenuItem = {
       .chain()
       .focus()
       .deleteRange(range)
-      .setNode("bulletList")
+      .toggleBulletList()
       .run();
   },
 };
@@ -120,7 +120,7 @@ export const orderedList: SlashMenuItem = {
       .chain()
       .focus()
       .deleteRange(range)
-      .setNode("orderedList")
+      .toggleOrderedList()
       .run();
   },
 };
@@ -135,7 +135,7 @@ export const blockquote: SlashMenuItem = {
       .chain()
       .focus()
       .deleteRange(range)
-      .setNode("blockquote")
+      .toggleBlockquote()
       .run();
   },
 };
@@ -150,7 +150,7 @@ export const codeBlock: SlashMenuItem = {
       .chain()
       .focus()
       .deleteRange(range)
-      .setNode("codeBlock")
+      .toggleCodeBlock()
       .run();
   },
 };
@@ -165,7 +165,7 @@ export const horizontalRule: SlashMenuItem = {
       .chain()
       .focus()
       .deleteRange(range)
-      .setNode("horizontalRule")
+      .setHorizontalRule()
       .run();
   },
 };
