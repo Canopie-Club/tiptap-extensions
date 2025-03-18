@@ -10,6 +10,7 @@ export default defineConfig({
   clean: true,
   outDir: "dist",
   external: ["vue", "@tiptap/core", "@tiptap/vue-3"],
+  // @ts-ignore
   esbuildPlugins: [vuePlugin()],
   esbuildOptions(options) {
     options.banner = {
