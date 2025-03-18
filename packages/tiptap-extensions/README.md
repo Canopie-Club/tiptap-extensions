@@ -12,11 +12,11 @@ A collection of custom TipTap extensions for rich text editing.
 ## Installation
 
 ```bash
-npm install @canopie/tiptap-extensions
+npm install @canopie-club/tiptap-extensions
 # or
-yarn add @canopie/tiptap-extensions
+yarn add @canopie-club/tiptap-extensions
 # or
-bun add @canopie/tiptap-extensions
+bun add @canopie-club/tiptap-extensions
 ```
 
 ## Usage
@@ -29,7 +29,7 @@ bun add @canopie/tiptap-extensions
 <script setup>
 import { onBeforeUnmount, onMounted, ref } from 'vue'
 import { Editor, EditorContent } from '@tiptap/vue-3'
-import { StarterExtension, FancyBorder, starterMenu, borderMenu } from '@canopie/tiptap-extensions'
+import { StarterExtension, FancyBorder, starterMenu, borderMenu } from '@canopie-club/tiptap-extensions'
 
 const editor = ref(null)
 
@@ -56,7 +56,7 @@ onBeforeUnmount(() => {
 Adds a customizable border around content with interactive controls for styling.
 
 ```js
-import { FancyBorder } from '@canopie/tiptap-extensions'
+import { FancyBorder } from '@canopie-club/tiptap-extensions'
 
 // Use in editor
 new Editor({
@@ -78,15 +78,15 @@ Use the included menu commands to add slash command functionality.
 ```vue
 <template>
   <editor-content :editor="editor" />
-  <slash-menu 
-    v-if="editor" 
-    :editor="editor" 
-    :items="[...starterMenu, ...borderMenu]" 
+  <slash-menu
+    v-if="editor"
+    :editor="editor"
+    :items="[...starterMenu, ...borderMenu]"
   />
 </template>
 
 <script setup>
-import { starterMenu, borderMenu } from '@canopie/tiptap-extensions'
+import { starterMenu, borderMenu } from '@canopie-club/tiptap-extensions'
 // ...other imports
 </script>
 ```

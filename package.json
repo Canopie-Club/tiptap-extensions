@@ -12,7 +12,7 @@
     "dev:packages": "cd packages/tiptap-extensions && bun run dev"
   },
   "dependencies": {
-    "@canopie/tiptap-extensions": "file:packages/tiptap-extensions",
+    "@canopie-club/tiptap-extensions": "file:packages/tiptap-extensions",
     "@nuxtjs/tailwindcss": "6.13.1",
     "@radix-ui/colors": "^3.0.0",
     "@tiptap-pro/extension-drag-handle": "^2.17.5",

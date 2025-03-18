@@ -26,12 +26,12 @@ import { ref, onMounted, onBeforeUnmount, nextTick } from "vue";
 import { Editor, EditorContent } from "@tiptap/vue-3";
 import Placeholder from "@tiptap/extension-placeholder";
 import BubbleMenu from "@tiptap/extension-bubble-menu";
-import { 
-  StarterExtension, 
-  starterMenu, 
-  FancyBorder as BorderExtension,
-  borderMenu
-} from "@canopie/tiptap-extensions";
+import {
+    StarterExtension,
+    starterMenu,
+    FancyBorder as BorderExtension,
+    borderMenu,
+} from "@canopie-club/tiptap-extensions";
 
 // Import custom extensions
 import { createDragHandleExtension } from "./extensions/DragHandleConfig";

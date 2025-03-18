@@ -50,10 +50,10 @@ bun run build
 
 ## Using the TipTap Extensions package
 
-The `@canopie/tiptap-extensions` package can be used independently in other Vue projects. See the package README for detailed usage instructions.
+The `@canopie-club/tiptap-extensions` package can be used independently in other Vue projects. See the package README for detailed usage instructions.
 
 ```js
-import { FancyBorder, starterMenu } from '@canopie/tiptap-extensions'
+import { FancyBorder, starterMenu } from '@canopie-club/tiptap-extensions'
 ```
 
 ## Production
