@@ -36,7 +36,6 @@
 
 <script lang="ts" setup>
 import { type Editor } from "@tiptap/vue-3";
-import type { Transaction } from "@tiptap/pm/state";
 import type { SlashMenuItem } from "~/assets/tiptap/types/menu";
 
 interface Position {
@@ -127,8 +126,11 @@ const executeCommand = (item: SlashMenuItem) => {
     const { state } = props.editor;
     const { from, to } = state.selection;
 
+    // Find the position of the '/' character
+    const slashPos = from - (search.value?.length || 0) - 1;
+
     // Delete the '/' character
-    const range = { from: from - 1, to };
+    const range = { from: slashPos, to };
 
     // Execute the command
     item.command({ editor: props.editor, range });
@@ -157,7 +159,7 @@ function handleTransaction({
     // Extract the text content of the current node
     const currentText = currentNode.textContent;
 
-    const pattern = /\/(\w*)/;
+    const pattern = /^\/(\w*)/;
 
     const match = pattern.exec(currentText);
 

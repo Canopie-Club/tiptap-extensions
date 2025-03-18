@@ -85,28 +85,6 @@ onMounted(() => {
         ],
         content:
             "<p>Welcome to your new editor! Type / on a new line to add content blocks.</p>",
-        onTransaction: ({ editor }) => {
-            // Check for '/' at the beginning of a paragraph
-            const { selection } = editor.state;
-            const { empty, anchor } = selection;
-
-            if (!empty) {
-                showSlashMenu.value = false;
-                return;
-            }
-
-            const textBeforeCursor = editor.state.doc.textBetween(
-                Math.max(0, anchor - 1),
-                anchor,
-                "",
-            );
-
-            if (textBeforeCursor === "/") {
-                openSlashMenu(editor as Editor);
-            } else {
-                showSlashMenu.value = false;
-            }
-        },
 
         onUpdate: (e) => {
             // Update the model with the new content
