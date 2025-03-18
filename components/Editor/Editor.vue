@@ -26,12 +26,14 @@ import { ref, onMounted, onBeforeUnmount, nextTick } from "vue";
 import { Editor, EditorContent } from "@tiptap/vue-3";
 import Placeholder from "@tiptap/extension-placeholder";
 import BubbleMenu from "@tiptap/extension-bubble-menu";
+// For development, we're importing directly from the src directory
+// In production, this would be from '@canopie/tiptap-extensions'
 import {
     StarterExtension,
     starterMenu,
     FancyBorder as BorderExtension,
     borderMenu,
-} from "@canopie-club/tiptap-extensions";
+} from "../../src";
 
 // Import custom extensions
 import { createDragHandleExtension } from "./extensions/DragHandleConfig";

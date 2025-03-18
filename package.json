@@ -1,18 +1,33 @@
 {
-  "name": "nuxt-app",
-  "private": true,
+  "name": "@canopie/tiptap-extensions",
+  "version": "0.1.0",
+  "description": "Custom TipTap extensions for rich text editing",
   "type": "module",
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs",
+      "types": "./dist/index.d.ts"
+    }
+  },
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "build": "nuxt build",
     "dev": "nuxt dev",
-    "generate": "nuxt generate",
+    "generate": "nuxt generate", 
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare",
-    "build:packages": "cd packages/tiptap-extensions && bun run build",
-    "dev:packages": "cd packages/tiptap-extensions && bun run dev"
+    "build:lib": "tsup",
+    "dev:lib": "tsup --watch",
+    "typecheck": "tsc --project tsconfig.lib.json --noEmit",
+    "prepublishOnly": "bun run build:lib && cp README-npm.md README.md"
   },
   "dependencies": {
-    "@canopie-club/tiptap-extensions": "file:packages/tiptap-extensions",
     "@nuxtjs/tailwindcss": "6.13.1",
     "@radix-ui/colors": "^3.0.0",
     "@tiptap-pro/extension-drag-handle": "^2.17.5",
@@ -30,7 +45,20 @@
     "vue": "latest",
     "vue-router": "latest"
   },
-  "workspaces": [
-    "packages/*"
-  ]
+  "peerDependencies": {
+    "@tiptap/core": "^2.0.0",
+    "@tiptap/vue-3": "^2.0.0",
+    "vue": "^3.0.0"
+  },
+  "devDependencies": {
+    "tsup": "^8.0.0",
+    "typescript": "^5.0.0"
+  },
+  "keywords": [
+    "tiptap",
+    "editor",
+    "vue",
+    "extensions"
+  ],
+  "license": "MIT"
 }

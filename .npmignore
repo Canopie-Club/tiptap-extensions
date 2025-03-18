@@ -1,0 +1,27 @@
+# Development files
+.nuxt
+node_modules
+assets
+components
+pages
+public
+server
+layouts
+app.vue
+nuxt.config.ts
+tailwind.config.ts
+tailwind.toolbox.ts
+tsconfig.json
+bun.lock
+bunfig.toml
+KODING.md
+README.md
+.github
+.gitignore
+
+# Source files (since we publish the built files in dist)
+src
+
+# Development configuration
+tsconfig.lib.json
+tsup.config.ts
