@@ -19,7 +19,7 @@
   "scripts": {
     "build": "nuxt build",
     "dev": "nuxt dev",
-    "generate": "nuxt generate", 
+    "generate": "nuxt generate",
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare",
     "build:lib": "tsup",
@@ -51,6 +51,7 @@
     "vue": "^3.0.0"
   },
   "devDependencies": {
+    "esbuild-plugin-vue3": "^0.4.2",
     "tsup": "^8.0.0",
     "typescript": "^5.0.0"
   },

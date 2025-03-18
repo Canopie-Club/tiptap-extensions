@@ -1,8 +1,8 @@
 <template>
-    <div v-if="isDocument">
+    <code v-if="isCode">
         {{ content.text }}
         <slot />
-    </div>
+    </code>
     <div v-else>
         {{ content.text }}
         <slot />
@@ -15,5 +15,5 @@ import { computed } from "vue";
 
 const props = defineProps<{ content: JSONContent }>();
 
-const isDocument = computed(() => props.content.type === "doc");
+const isCode = computed(() => props.content.type === "code");
 </script>

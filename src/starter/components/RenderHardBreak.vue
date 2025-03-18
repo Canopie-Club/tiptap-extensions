@@ -1,8 +1,5 @@
 <template>
-    <strong v-if="isBold">
-        {{ content.text }}
-        <slot />
-    </strong>
+    <br v-if="isHardBreak" />
     <div v-else>
         {{ content.text }}
         <slot />
@@ -15,5 +12,5 @@ import { computed } from "vue";
 
 const props = defineProps<{ content: JSONContent }>();
 
-const isBold = computed(() => props.content.type === "bold");
+const isHardBreak = computed(() => props.content.type === "hardBreak");
 </script>

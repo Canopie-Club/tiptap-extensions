@@ -1,8 +1,8 @@
 <template>
-    <p v-if="isParagraph">
-        {{ content.text }}
+    <pre v-if="isCodeBlock">
+        <code>{{ content.text }}</code>
         <slot />
-    </p>
+    </pre>
     <div v-else>
         {{ content.text }}
         <slot />
@@ -10,10 +10,10 @@
 </template>
 
 <script setup lang="ts">
-import { type JSONContent } from "@tiptap/core";
+import { JSONContent } from "@tiptap/core";
 import { computed } from "vue";
 
 const props = defineProps<{ content: JSONContent }>();
 
-const isParagraph = computed(() => props.content.type === "paragraph");
+const isCodeBlock = computed(() => props.content.type === "codeBlock");
 </script>

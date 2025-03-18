@@ -1,8 +1,8 @@
 <template>
-    <blockquote v-if="isBlockquote">
+    <li v-if="isListItem">
         {{ content.text }}
         <slot />
-    </blockquote>
+    </li>
     <div v-else>
         {{ content.text }}
         <slot />
@@ -15,5 +15,5 @@ import { computed } from "vue";
 
 const props = defineProps<{ content: JSONContent }>();
 
-const isBlockquote = computed(() => props.content.type === "blockquote");
+const isListItem = computed(() => props.content.type === "listItem");
 </script>

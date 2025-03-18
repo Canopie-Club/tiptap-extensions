@@ -33,7 +33,7 @@ import {
     starterMenu,
     FancyBorder as BorderExtension,
     borderMenu,
-} from "../../src";
+} from "../../dist";
 
 // Import custom extensions
 import { createDragHandleExtension } from "./extensions/DragHandleConfig";
