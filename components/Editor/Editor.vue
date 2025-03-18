@@ -1,164 +1,73 @@
 <template>
     <div class="editor-wrapper" ref="editorWrapper">
-        <editor-content :editor="editor ?? undefined" class="editor-content" />
+        <editor-content
+            :editor="(editor as Editor) ?? undefined"
+            class="editor-content"
+        />
 
         <!-- Floating bubble menu for text formatting -->
-        <bubble-menu
-            v-if="editor"
-            :editor="editor"
-            :tippy-options="{ duration: 100 }"
-        >
-            <div class="bubble-menu-container">
-                <button
-                    @click="editor.chain().focus().toggleBold().run()"
-                    :class="{ 'is-active': editor.isActive('bold') }"
-                    class="bubble-menu-button"
-                >
-                    <span class="bubble-icon">B</span>
-                </button>
-                <button
-                    @click="editor.chain().focus().toggleItalic().run()"
-                    :class="{ 'is-active': editor.isActive('italic') }"
-                    class="bubble-menu-button"
-                >
-                    <span class="bubble-icon"><i>I</i></span>
-                </button>
-                <button
-                    @click="editor.chain().focus().toggleCode().run()"
-                    :class="{ 'is-active': editor.isActive('code') }"
-                    class="bubble-menu-button"
-                >
-                    <span class="bubble-icon">&lt;/&gt;</span>
-                </button>
-                <button
-                    @click="editor.chain().focus().toggleStrike().run()"
-                    :class="{ 'is-active': editor.isActive('strike') }"
-                    class="bubble-menu-button"
-                >
-                    <span class="bubble-icon"><s>S</s></span>
-                </button>
-            </div>
-        </bubble-menu>
+
+        <EditorBubbleMenu :editor="editor as Editor | undefined" />
 
         <!-- Slash menu -->
-        <div v-if="showSlashMenu" class="slash-menu" ref="slashMenuRef">
-            <div
-                v-for="item in slashMenuItems"
-                :key="item.title"
-                @click="executeSlashCommand(item)"
-                class="slash-menu-item"
-            >
-                <div class="slash-menu-item-icon">{{ item.icon }}</div>
-                <div class="slash-menu-item-content">
-                    <div class="slash-menu-item-title">{{ item.title }}</div>
-                    <div class="slash-menu-item-description">
-                        {{ item.description }}
-                    </div>
-                </div>
-            </div>
-        </div>
+        <EditorSlashMenu
+            v-if="editor"
+            :editor="editor as Editor"
+            :show="showSlashMenu"
+            :position="slashMenuPosition"
+            :items="slashMenuItems"
+            @command-executed="hideSlashMenu"
+        />
     </div>
 </template>
 
 <script lang="ts" setup>
-import { ref, onMounted, onBeforeUnmount, watch } from "vue";
-import { Editor, EditorContent, Extension } from "@tiptap/vue-3";
-import { type Range } from "@tiptap/core";
+import { ref, onMounted, onBeforeUnmount, nextTick } from "vue";
+import { Editor, EditorContent } from "@tiptap/vue-3";
 import StarterKit from "@tiptap/starter-kit";
 import Placeholder from "@tiptap/extension-placeholder";
 import BubbleMenu from "@tiptap/extension-bubble-menu";
-import DragHandle from "@tiptap-pro/extension-drag-handle";
-// import tippy from "tippy.js";
-// import "tippy.js/dist/tippy.css";
 
-// State for slash command menu
+// Import custom extensions
+import { createDragHandleExtension } from "./extensions/DragHandleConfig";
+
+// Import modular components
+import EditorBubbleMenu from "./menus/BubbleMenu.vue";
+import EditorSlashMenu from "./menus/SlashMenu.vue";
+
+// Import constants and configs
+import { slashMenuItems, type SlashMenuItem } from "./constants/menuItems";
+
+// State for editor
+const editor = ref<Editor | null>(null);
 const showSlashMenu = ref(false);
-const editorWrapper: Ref<HTMLDivElement | null> = ref(null);
-const slashMenuRef: Ref<HTMLDivElement | null> = ref(null);
-const slashCommand = ref("");
-const editor: Ref<Editor | null> = ref(null);
+const editorWrapper = ref<HTMLDivElement | null>(null);
+const slashMenuPosition = ref({ left: 0, top: 0 });
 
-const { top, left, width, height } = useElementBounding(editorWrapper);
+const { top, left } = useElementBounding(editorWrapper);
 
-interface SlashMenuItem {
-    title: string;
-    description: string;
-    icon: string;
-    command: ({ editor, range }: { editor: Editor; range: Range }) => void;
-}
-
-// Slash menu items with their actions
-const slashMenuItems: SlashMenuItem[] = [
-    {
-        title: "Heading 1",
-        description: "Large section heading",
-        icon: "H1",
-        command: ({ editor, range }) => {
-            editor
-                .chain()
-                .focus()
-                .deleteRange(range)
-                .setNode("heading", { level: 1 })
-                .run();
-        },
-    },
-    {
-        title: "Heading 2",
-        description: "Medium section heading",
-        icon: "H2",
-        command: ({ editor, range }) => {
-            editor
-                .chain()
-                .focus()
-                .deleteRange(range)
-                .setNode("heading", { level: 2 })
-                .run();
-        },
-    },
-    {
-        title: "Bullet List",
-        description: "Create a simple bullet list",
-        icon: "•",
-        command: ({ editor, range }) => {
-            editor.chain().focus().deleteRange(range).toggleBulletList().run();
-        },
-    },
-    {
-        title: "Numbered List",
-        description: "Create a numbered list",
-        icon: "1.",
-        command: ({ editor, range }) => {
-            editor.chain().focus().deleteRange(range).toggleOrderedList().run();
-        },
-    },
-    {
-        title: "Blockquote",
-        description: "Capture a quote",
-        icon: '"',
-        command: ({ editor, range }) => {
-            editor.chain().focus().deleteRange(range).toggleBlockquote().run();
-        },
-    },
-];
-
-// We're using a manual approach for slash commands instead of an extension
-
+// Open the slash menu and position it correctly
 function openSlashMenu(editor: Editor) {
     const { selection } = editor.state;
-    const { empty, anchor } = selection;
+    const { anchor } = selection;
 
     // Show slash menu
     showSlashMenu.value = true;
 
     nextTick(() => {
         // Position the menu
-        if (slashMenuRef.value) {
-            const coords = editor.view.coordsAtPos(anchor);
-            slashMenuRef.value.style.left = `${coords.left - (left.value ?? 0)}px`;
-            slashMenuRef.value.style.top = `${coords.bottom - (top.value ?? 0)}px`;
-        }
+        const coords = editor.view.coordsAtPos(anchor);
+        slashMenuPosition.value = {
+            left: coords.left - (left.value ?? 0),
+            top: coords.bottom - (top.value ?? 0),
+        };
     });
 }
+
+// Hide slash menu - called when a command is executed
+const hideSlashMenu = () => {
+    showSlashMenu.value = false;
+};
 
 onMounted(() => {
     editor.value = new Editor({
@@ -167,21 +76,13 @@ onMounted(() => {
             Placeholder.configure({
                 placeholder: "Type / to open menu…",
             }),
-            DragHandle.configure({
-                render() {
-                    const element = document.createElement("div");
-
-                    element.classList.add("custom-drag-handle");
-
-                    return element;
-                },
-                tippyOptions: {
-                    placement: "left",
-                    touch: "hold",
-                },
+            BubbleMenu.configure({
+                element: document.querySelector(".tippy-bubble") as HTMLElement,
             }),
+            createDragHandleExtension(),
         ],
-        content: "<p>Welcome to your new editor!</p>",
+        content:
+            "<p>Welcome to your new editor! Type / on a new line to add content blocks.</p>",
         onTransaction: ({ editor }) => {
             // Check for '/' at the beginning of a paragraph
             const { selection } = editor.state;
@@ -192,7 +93,6 @@ onMounted(() => {
                 return;
             }
 
-            const currentNode = editor.state.doc.nodeAt(anchor);
             const textBeforeCursor = editor.state.doc.textBetween(
                 Math.max(0, anchor - 1),
                 anchor,
@@ -208,23 +108,6 @@ onMounted(() => {
     });
 });
 
-// Execute a slash command and hide the menu
-const executeSlashCommand = (item: SlashMenuItem) => {
-    if (!editor.value) return;
-
-    const { state } = editor.value;
-    const { from, to } = state.selection;
-
-    // Delete the '/' character
-    const range = { from: from - 1, to };
-
-    // Execute the command
-    item.command({ editor: editor.value, range });
-
-    // Hide slash menu
-    showSlashMenu.value = false;
-};
-
 // Clean up on component unmount
 onBeforeUnmount(() => {
     if (editor.value) {
@@ -234,6 +117,8 @@ onBeforeUnmount(() => {
 </script>
 
 <style lang="scss">
+@import "./extensions/DragHandle.scss";
+
 .editor-wrapper {
     @apply relative mx-auto overflow-hidden rounded-lg border border-gray-200 bg-white;
     max-width: 800px;
@@ -243,7 +128,6 @@ onBeforeUnmount(() => {
 
         .tiptap {
             @apply focus-visible:outline-none focus-within:outline-none;
-            /* @apply outline-none; */
         }
 
         p {
@@ -273,70 +157,7 @@ onBeforeUnmount(() => {
         }
     }
 
-    /* .tiptap-drag-handle {
-        @apply absolute flex h-6 w-6 cursor-move items-center justify-center rounded border border-gray-200 bg-gray-50 opacity-0 transition-opacity duration-200;
-
-        &:hover {
-            @apply bg-gray-100 opacity-100;
-        }
-    } */
-
-    p,
-    h1,
-    h2,
-    li,
-    blockquote {
-        &:hover .tiptap-drag-handle {
-            @apply opacity-50;
-        }
-    }
-
-    .bubble-menu-container {
-        @apply flex rounded-md bg-white p-1 shadow-lg;
-
-        .bubble-menu-button {
-            @apply flex h-8 w-8 cursor-pointer items-center justify-center rounded border-none bg-transparent transition-colors duration-200 mx-0.5;
-
-            &:hover {
-                @apply bg-gray-50;
-            }
-
-            &.is-active {
-                @apply bg-gray-100 text-gray-500;
-                /* @apply bg-gray-100 text-primary-500; */
-            }
-
-            .bubble-icon {
-                @apply text-sm font-bold;
-            }
-        }
-    }
-
-    .slash-menu {
-        @apply absolute z-10 min-w-[280px] overflow-hidden rounded-md bg-white shadow-lg;
-
-        .slash-menu-item {
-            @apply flex cursor-pointer items-center p-3 transition-colors duration-200;
-
-            &:hover {
-                @apply bg-gray-50;
-            }
-
-            .slash-menu-item-icon {
-                @apply mr-3 flex h-8 w-8 items-center justify-center rounded bg-gray-100 font-bold;
-            }
-
-            .slash-menu-item-content {
-                .slash-menu-item-title {
-                    @apply font-semibold;
-                }
-
-                .slash-menu-item-description {
-                    @apply text-sm text-gray-500;
-                }
-            }
-        }
-    }
+    /* Drag handle styles are imported from DragHandleConfig */
 
     ::selection {
         background-color: #70cff850;
@@ -388,26 +209,6 @@ onBeforeUnmount(() => {
             bottom: -0.25rem;
             background-color: #70cff850;
             border-radius: 0.2rem;
-        }
-    }
-
-    .custom-drag-handle {
-        /* &::after {
-            @apply flex items-center justify-center w-4 h-5 content-['⠿'] font-bold cursor-grab bg-black bg-opacity-5 text-black text-opacity-30 rounded;
-        } */
-
-        &::after {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 1rem;
-            height: 1.25rem;
-            content: "⠿";
-            font-weight: 700;
-            cursor: grab;
-            background: #0d0d0d10;
-            color: #0d0d0d50;
-            border-radius: 0.25rem;
         }
     }
 }
