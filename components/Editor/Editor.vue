@@ -30,6 +30,7 @@ import BorderExtension from "~/assets/tiptap/fancyBorder/extension";
 import borderMenu from "~/assets/tiptap/fancyBorder/menu";
 import Placeholder from "@tiptap/extension-placeholder";
 import BubbleMenu from "@tiptap/extension-bubble-menu";
+import NodeViewFancyBorder from "~/assets/tiptap/fancyBorder/components/NodeViewFancyBorder.vue";
 
 // Import custom extensions
 import { createDragHandleExtension } from "./extensions/DragHandleConfig";

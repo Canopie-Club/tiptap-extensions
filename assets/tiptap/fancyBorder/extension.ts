@@ -2,9 +2,9 @@ import {
   Node,
   type CommandProps,
   type RawCommands,
-  type ChainedCommands,
 } from "@tiptap/core";
-import { Editor } from "@tiptap/vue-3";
+import { Editor, VueNodeViewRenderer } from "@tiptap/vue-3";
+import NodeViewFancyBorder from "./components/NodeViewFancyBorder.vue";
 
 export interface FancyBorderOptions {
   borderColor: string;
@@ -89,6 +89,10 @@ export const FancyBorder = Node.create<FancyBorderOptions>({
       },
       0,
     ];
+  },
+
+  addNodeView() {
+    return VueNodeViewRenderer(NodeViewFancyBorder);
   },
 
   addCommands() {
