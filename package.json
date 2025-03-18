@@ -7,9 +7,12 @@
     "dev": "nuxt dev",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
-    "postinstall": "nuxt prepare"
+    "postinstall": "nuxt prepare",
+    "build:packages": "cd packages/tiptap-extensions && bun run build",
+    "dev:packages": "cd packages/tiptap-extensions && bun run dev"
   },
   "dependencies": {
+    "@canopie/tiptap-extensions": "file:packages/tiptap-extensions",
     "@nuxtjs/tailwindcss": "6.13.1",
     "@radix-ui/colors": "^3.0.0",
     "@tiptap-pro/extension-drag-handle": "^2.17.5",
@@ -26,5 +29,8 @@
     "tippy.js": "^6.3.7",
     "vue": "latest",
     "vue-router": "latest"
-  }
+  },
+  "workspaces": [
+    "packages/*"
+  ]
 }

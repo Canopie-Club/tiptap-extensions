@@ -24,13 +24,14 @@
 <script lang="ts" setup>
 import { ref, onMounted, onBeforeUnmount, nextTick } from "vue";
 import { Editor, EditorContent } from "@tiptap/vue-3";
-import StarterExtension from "~/assets/tiptap/starter/extension";
-import starterMenu from "~/assets/tiptap/starter/menu";
-import BorderExtension from "~/assets/tiptap/fancyBorder/extension";
-import borderMenu from "~/assets/tiptap/fancyBorder/menu";
 import Placeholder from "@tiptap/extension-placeholder";
 import BubbleMenu from "@tiptap/extension-bubble-menu";
-import NodeViewFancyBorder from "~/assets/tiptap/fancyBorder/components/NodeViewFancyBorder.vue";
+import { 
+  StarterExtension, 
+  starterMenu, 
+  FancyBorder as BorderExtension,
+  borderMenu
+} from "@canopie/tiptap-extensions";
 
 // Import custom extensions
 import { createDragHandleExtension } from "./extensions/DragHandleConfig";
