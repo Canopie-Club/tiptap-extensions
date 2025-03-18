@@ -14,8 +14,8 @@
             v-if="editor"
             :editor="editor as Editor"
             :show="showSlashMenu"
-            :position="slashMenuPosition"
-            :items="slashMenuItems"
+            :position-offset="{ top, left }"
+            :items="starterMenu"
             @command-executed="hideSlashMenu"
         />
     </div>
@@ -25,6 +25,8 @@
 import { ref, onMounted, onBeforeUnmount, nextTick } from "vue";
 import { Editor, EditorContent } from "@tiptap/vue-3";
 import StarterKit from "@tiptap/starter-kit";
+import StarterExtension from "~/assets/tiptap/starter/extension.ts";
+import starterMenu from "~/assets/tiptap/starter/menu.ts";
 import Placeholder from "@tiptap/extension-placeholder";
 import BubbleMenu from "@tiptap/extension-bubble-menu";
 
@@ -72,7 +74,7 @@ const hideSlashMenu = () => {
 onMounted(() => {
     editor.value = new Editor({
         extensions: [
-            StarterKit,
+            StarterExtension,
             Placeholder.configure({
                 placeholder: "Type / to open menu…",
             }),
@@ -104,6 +106,11 @@ onMounted(() => {
             } else {
                 showSlashMenu.value = false;
             }
+        },
+
+        onUpdate: (e) => {
+            // Update the model with the new content
+            console.log(e.editor.getJSON());
         },
     });
 });
