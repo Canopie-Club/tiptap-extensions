@@ -27,7 +27,7 @@ import { Editor, EditorContent } from "@tiptap/vue-3";
 import Placeholder from "@tiptap/extension-placeholder";
 import BubbleMenu from "@tiptap/extension-bubble-menu";
 // For development, we're importing directly from the src directory
-// In production, this would be from '@canopie/tiptap-extensions'
+// In production, this would be from '@canopie-club/tiptap-extensions'
 import {
     StarterExtension,
     starterMenu,

@@ -1,5 +1,5 @@
 {
-  "name": "@canopie/tiptap-extensions",
+  "name": "@canopie-club/tiptap-extensions",
   "version": "0.1.0",
   "description": "Custom TipTap extensions for rich text editing",
   "type": "module",
@@ -16,6 +16,9 @@
   "files": [
     "dist"
   ],
+  "publishConfig": {
+    "access": "public"
+  },
   "scripts": {
     "build": "nuxt build",
     "dev": "nuxt dev",
