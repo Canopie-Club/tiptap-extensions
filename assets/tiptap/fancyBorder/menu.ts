@@ -10,7 +10,7 @@ export const fancyBorder: SlashMenuItem = {
   description: "Add a block with fancy border",
   icon: "▢",
   command: ({ editor, range }) => {
-    (editor as any)
+    (editor as FancyBorderEditor)
       .chain()
       .focus()
       .deleteRange(range)

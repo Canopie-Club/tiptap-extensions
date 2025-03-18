@@ -1,5 +1,5 @@
 import { Editor } from "@tiptap/vue-3";
-import { type Extension, type Range } from "@tiptap/core";
+import { Node, type Extension, type Range } from "@tiptap/core";
 
 export interface SlashMenuItem {
   title: string;
@@ -9,7 +9,9 @@ export interface SlashMenuItem {
   command: ({ editor, range }: { editor: Editor; range: Range }) => void;
 }
 
-export function createEditorType<T extends Extension[]>(...extensions: T) {
+export function createEditorType<T extends (Extension | Node)[]>(
+  ...extensions: T
+) {
   return new Editor({
     extensions: [...extensions],
   });
