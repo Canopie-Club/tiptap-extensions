@@ -1,70 +1,95 @@
-# TipTap Two
+# TipTap Extensions
 
-A rich text editor built with TipTap and Vue 3.
+A collection of custom TipTap extensions for rich text editing.
 
 ## Features
 
-- Rich text editing with TipTap
-- Custom extensions for advanced formatting
-- Slash commands for content insertion
-- Node views for interactive components
+- **FancyBorder Extension**: Adds a configurable border around content blocks with the ability to adjust color, width, and style directly in the editor
+- **Starter Kit Integration**: Ready-to-use starter kit with basic formatting controls
+- **Vue Component Renderers**: Components for rendering TipTap content
+- **Slash Menu Commands**: Command palette support for inserting content blocks
 
-## Project Structure
-
-This project is organized as a monorepo with:
-
-1. **Main Nuxt Application**: A Nuxt 3 app for development and testing
-2. **TipTap Extensions Package**: A separate package in the `packages` directory for reuse in other projects
-
-## Setup
-
-Make sure to install dependencies:
+## Installation
 
 ```bash
-# npm
-npm install
-
-# bun
-bun install
+npm install @canopie/tiptap-extensions
+# or
+yarn add @canopie/tiptap-extensions
+# or
+bun add @canopie/tiptap-extensions
 ```
 
-## Development
+## Usage
 
-```bash
-# Start development server for the Nuxt app
-bun run dev
+```vue
+<template>
+  <editor-content :editor="editor" />
+</template>
 
-# In a separate terminal, start the watch mode for the packages
-bun run dev:packages
+<script setup>
+import { onBeforeUnmount, onMounted, ref } from 'vue'
+import { Editor, EditorContent } from '@tiptap/vue-3'
+import { StarterExtension, FancyBorder, starterMenu, borderMenu } from '@canopie/tiptap-extensions'
+
+const editor = ref(null)
+
+onMounted(() => {
+  editor.value = new Editor({
+    extensions: [
+      StarterExtension,
+      FancyBorder,
+    ],
+    content: '<p>Hello World!</p>',
+  })
+})
+
+onBeforeUnmount(() => {
+  editor.value?.destroy()
+})
+</script>
 ```
 
-## Building
+## Extensions
 
-```bash
-# Build the extension package first
-bun run build:packages
+### FancyBorder
 
-# Build the Nuxt app
-bun run build
-```
-
-## Using the TipTap Extensions package
-
-The `@canopie-club/tiptap-extensions` package can be used independently in other Vue projects. See the package README for detailed usage instructions.
+Adds a customizable border around content with interactive controls for styling.
 
 ```js
-import { FancyBorder, starterMenu } from '@canopie-club/tiptap-extensions'
+import { FancyBorder } from '@canopie/tiptap-extensions'
+
+// Use in editor
+new Editor({
+  extensions: [
+    // ...other extensions
+    FancyBorder.configure({
+      borderColor: '#000000',
+      borderWidth: 1,
+      borderStyle: 'solid',
+    }),
+  ],
+})
 ```
 
-## Production
+### Slash Menu Commands
 
-Locally preview production build:
+Use the included menu commands to add slash command functionality.
 
-```bash
-bun run preview
+```vue
+<template>
+  <editor-content :editor="editor" />
+  <slash-menu 
+    v-if="editor" 
+    :editor="editor" 
+    :items="[...starterMenu, ...borderMenu]" 
+  />
+</template>
+
+<script setup>
+import { starterMenu, borderMenu } from '@canopie/tiptap-extensions'
+// ...other imports
+</script>
 ```
-
-Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
 
 ## License
 
