@@ -1,4 +1,10 @@
-import { Node, type CommandProps, type RawCommands } from "@tiptap/core";
+import {
+  Node,
+  type CommandProps,
+  type RawCommands,
+  type ChainedCommands,
+} from "@tiptap/core";
+import { Editor } from "@tiptap/vue-3";
 
 export interface FancyBorderOptions {
   borderColor: string;
@@ -10,6 +16,18 @@ export interface FancyBorderAttributes {
   borderColor?: string;
   borderWidth?: number;
   borderStyle?: string;
+}
+
+// Extend the CommandsChain type to include our custom command
+declare module "@tiptap/core" {
+  interface Commands<ReturnType> {
+    fancyBorder: {
+      /**
+       * Set a fancy border node
+       */
+      setFancyBorder: (attributes?: FancyBorderAttributes) => ReturnType;
+    };
+  }
 }
 
 export const FancyBorder = Node.create<FancyBorderOptions>({
@@ -78,15 +96,16 @@ export const FancyBorder = Node.create<FancyBorderOptions>({
       setFancyBorder:
         (attributes: FancyBorderAttributes = {}) =>
         ({ commands }: CommandProps) => {
-          return commands.setNode(this.name, attributes);
+          return commands.wrapIn(this.name, attributes);
         },
     } as Partial<RawCommands>;
   },
 
   addKeyboardShortcuts() {
     return {
-      // TODO: Update the editor type so that the editor.commands object has a setFancyBorder method
-      "Mod-b": () => (this.editor.commands as any).setFancyBorder(),
+      "Mod-b": () => this.editor.commands.setFancyBorder(),
     };
   },
 });
+
+export default FancyBorder;

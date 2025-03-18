@@ -15,7 +15,7 @@
             :editor="editor as Editor"
             :show="showSlashMenu"
             :position-offset="{ top, left }"
-            :items="starterMenu"
+            :items="[...starterMenu, ...borderMenu]"
             @command-executed="hideSlashMenu"
         />
     </div>
@@ -27,6 +27,8 @@ import { Editor, EditorContent } from "@tiptap/vue-3";
 import StarterKit from "@tiptap/starter-kit";
 import StarterExtension from "~/assets/tiptap/starter/extension.ts";
 import starterMenu from "~/assets/tiptap/starter/menu.ts";
+import BorderExtension from "~/assets/tiptap/fancyBorder/extension.ts";
+import borderMenu from "~/assets/tiptap/fancyBorder/menu.ts";
 import Placeholder from "@tiptap/extension-placeholder";
 import BubbleMenu from "@tiptap/extension-bubble-menu";
 
@@ -75,6 +77,7 @@ onMounted(() => {
     editor.value = new Editor({
         extensions: [
             StarterExtension,
+            BorderExtension,
             Placeholder.configure({
                 placeholder: "Type / to open menu…",
             }),
