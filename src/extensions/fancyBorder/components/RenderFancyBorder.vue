@@ -1,10 +1,6 @@
 <template>
     <div class="fancy-border" :style="borderStyle">
-        <component
-            v-for="(child, index) in content.content || []"
-            :key="index"
-            :is="renderComponent(child)"
-        />
+        {{ content.text }}
         <slot />
     </div>
 </template>
@@ -12,7 +8,6 @@
 <script setup lang="ts">
 import { type JSONContent } from "@tiptap/core";
 import { computed } from "vue";
-import { renderComponent } from "../../starter/renderer";
 
 const props = defineProps<{ content: JSONContent }>();
 
