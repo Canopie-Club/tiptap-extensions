@@ -2,7 +2,11 @@ import { defineConfig } from "tsup";
 import vuePlugin from "esbuild-plugin-vue3";
 
 export default defineConfig({
-  entry: ["src/index.ts"],
+  entry: [
+    "src/index.ts",
+    "src/extensions/fancyBorder/index.ts",
+    "src/extensions/starter/index.ts"
+  ],
   format: ["esm", "cjs"],
   dts: true,
   splitting: false,

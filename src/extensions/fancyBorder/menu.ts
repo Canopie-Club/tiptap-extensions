@@ -1,5 +1,5 @@
 import { FancyBorder } from "./extension";
-import type { createEditorType, SlashMenuItem } from "../types/menu";
+import type { createEditorType, SlashMenuItem } from "../../types/menu";
 
 export type FancyBorderEditor = ReturnType<
   typeof createEditorType<[typeof FancyBorder]>

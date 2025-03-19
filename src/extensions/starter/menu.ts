@@ -1,5 +1,5 @@
 import StarterKit from "@tiptap/starter-kit";
-import type { createEditorType, SlashMenuItem } from "../types/menu";
+import type { createEditorType, SlashMenuItem } from "../../types/menu";
 
 export type StarterKitEditor = ReturnType<
   typeof createEditorType<[typeof StarterKit]>

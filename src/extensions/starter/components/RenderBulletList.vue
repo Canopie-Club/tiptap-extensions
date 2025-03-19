@@ -1,6 +1,8 @@
 <template>
     <ul v-if="isBulletList">
-        {{ content.text }}
+        {{
+            content.text
+        }}
         <slot />
     </ul>
     <div v-else>
@@ -10,7 +12,7 @@
 </template>
 
 <script setup lang="ts">
-import { JSONContent } from "@tiptap/core";
+import { type JSONContent } from "@tiptap/core";
 import { computed } from "vue";
 
 const props = defineProps<{ content: JSONContent }>();
