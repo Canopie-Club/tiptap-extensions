@@ -1,5 +1,6 @@
 import { defineConfig } from "tsup";
 import vuePlugin from "esbuild-plugin-vue3";
+import stylePlugin from "esbuild-style-plugin";
 
 export default defineConfig({
   entry: [
@@ -15,7 +16,7 @@ export default defineConfig({
   outDir: "dist",
   external: ["vue", "@tiptap/core", "@tiptap/vue-3"],
   // @ts-ignore
-  esbuildPlugins: [vuePlugin()],
+  esbuildPlugins: [vuePlugin(), stylePlugin({ postcss: true })],
   esbuildOptions(options) {
     options.banner = {
       js: '"use strict";',
