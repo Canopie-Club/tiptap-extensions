@@ -1,6 +1,6 @@
 {
   "name": "@canopie-club/tiptap-extensions",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "description": "Custom TipTap extensions for rich text editing",
   "type": "module",
   "main": "./dist/index.cjs",
@@ -26,6 +26,11 @@
       "import": "./dist/components/SlashMenu.js",
       "require": "./dist/components/SlashMenu.cjs",
       "types": "./dist/components/SlashMenu.d.ts"
+    },
+    "./style.css": {
+      "import": "./dist/index.css",
+      "require": "./dist/index.css",
+      "types": "./dist/index.d.ts"
     }
   },
   "files": [
