@@ -7,6 +7,7 @@ export default defineConfig({
     "src/index.ts",
     "src/extensions/fancyBorder/index.ts",
     "src/extensions/starter/index.ts",
+    "src/components/SlashMenu.vue",
   ],
   format: ["esm", "cjs"],
   dts: true,

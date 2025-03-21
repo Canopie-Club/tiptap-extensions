@@ -2,5 +2,6 @@
 export * from "./types/menu";
 export * from "./types/renderer";
 
-// Export main component
+// Export main components
 export * from "./components";
+export { SlashMenu } from "./components";
