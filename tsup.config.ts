@@ -5,7 +5,7 @@ export default defineConfig({
   entry: [
     "src/index.ts",
     "src/extensions/fancyBorder/index.ts",
-    "src/extensions/starter/index.ts"
+    "src/extensions/starter/index.ts",
   ],
   format: ["esm", "cjs"],
   dts: true,

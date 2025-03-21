@@ -1,6 +1,6 @@
 {
   "name": "@canopie-club/tiptap-extensions",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Custom TipTap extensions for rich text editing",
   "type": "module",
   "main": "./dist/index.cjs",
@@ -64,6 +64,9 @@
     "vue": "^3.0.0"
   },
   "devDependencies": {
+    "@canopie-club/tiptap-extensions": "^0.1.1",
+    "autoprefixer": "^10.4.21",
+    "esbuild-plugin-postcss2": "^0.1.2",
     "esbuild-plugin-vue3": "^0.4.2",
     "tsup": "^8.0.0",
     "typescript": "^5.0.0"

@@ -10,7 +10,7 @@
         <EditorBubbleMenu :editor="editor as Editor | undefined" />
 
         <!-- Slash menu -->
-        <EditorSlashMenu
+        <SlashMenu
             v-if="editor"
             :editor="editor as Editor"
             :show="showSlashMenu"
@@ -29,11 +29,12 @@ import BubbleMenu from "@tiptap/extension-bubble-menu";
 // For development, we're importing directly from the src directory
 // In production, this would be from '@canopie-club/tiptap-extensions'
 import {
-    StarterExtension,
-    starterMenu,
     FancyBorder as BorderExtension,
     borderMenu,
-} from "../../dist";
+} from "../../dist/extensions/fancyBorder";
+import { StarterExtension, starterMenu } from "../../dist/extensions/starter";
+import { SlashMenu } from "../../dist";
+import "../../dist/index.css";
 
 // Import custom extensions
 import { createDragHandleExtension } from "./extensions/DragHandleConfig";
