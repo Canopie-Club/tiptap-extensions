@@ -1,12 +1,8 @@
 <template>
     <ol v-if="isOrderedList">
-        {{
-            content.text
-        }}
         <slot />
     </ol>
     <div v-else>
-        {{ content.text }}
         <slot />
     </div>
 </template>

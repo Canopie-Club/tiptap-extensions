@@ -1,10 +1,8 @@
 <template>
     <div v-if="isDocument">
-        {{ content.text }}
         <slot />
     </div>
     <div v-else>
-        {{ content.text }}
         <slot />
     </div>
 </template>

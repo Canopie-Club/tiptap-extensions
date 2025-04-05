@@ -1,10 +1,8 @@
 <template>
     <component :is="headerTag" v-if="isHeading">
-        {{ content.text }}
         <slot />
     </component>
     <div v-else>
-        {{ content.text }}
         <slot />
     </div>
 </template>

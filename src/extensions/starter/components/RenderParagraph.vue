@@ -1,10 +1,8 @@
 <template>
     <p v-if="isParagraph">
-        {{ content.text }}
         <slot />
     </p>
     <div v-else>
-        {{ content.text }}
         <slot />
     </div>
 </template>

@@ -1,10 +1,8 @@
 <template>
     <blockquote v-if="isBlockquote">
-        {{ content.text }}
         <slot />
     </blockquote>
     <div v-else>
-        {{ content.text }}
         <slot />
     </div>
 </template>

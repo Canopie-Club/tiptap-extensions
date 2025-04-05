@@ -1,10 +1,8 @@
 <template>
     <del v-if="isStrike">
-        {{ content.text }}
         <slot />
     </del>
     <div v-else>
-        {{ content.text }}
         <slot />
     </div>
 </template>

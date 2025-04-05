@@ -1,7 +1,6 @@
 <template>
     <br v-if="isHardBreak" />
     <div v-else>
-        {{ content.text }}
         <slot />
     </div>
 </template>

@@ -1,10 +1,8 @@
 <template>
     <code v-if="isCode">
-        {{ content.text }}
         <slot />
     </code>
     <div v-else>
-        {{ content.text }}
         <slot />
     </div>
 </template>

@@ -1,7 +1,6 @@
 <template>
     <hr v-if="isHorizontalRule" />
     <div v-else>
-        {{ content.text }}
         <slot />
     </div>
 </template>

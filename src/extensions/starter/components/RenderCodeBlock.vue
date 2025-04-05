@@ -4,7 +4,6 @@
         <slot />
     </pre>
     <div v-else>
-        {{ content.text }}
         <slot />
     </div>
 </template>

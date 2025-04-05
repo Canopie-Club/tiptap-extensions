@@ -1,10 +1,8 @@
 <template>
     <em v-if="isItalic">
-        {{ content.text }}
         <slot />
     </em>
     <div v-else>
-        {{ content.text }}
         <slot />
     </div>
 </template>

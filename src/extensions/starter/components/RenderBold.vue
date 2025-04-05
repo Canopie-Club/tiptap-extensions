@@ -1,10 +1,8 @@
 <template>
     <strong v-if="isBold">
-        {{ content.text }}
         <slot />
     </strong>
     <div v-else>
-        {{ content.text }}
         <slot />
     </div>
 </template>

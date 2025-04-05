@@ -1,6 +1,6 @@
 {
   "name": "@canopie-club/tiptap-extensions",
-  "version": "0.1.7",
+  "version": "0.1.8",
   "description": "Custom TipTap extensions for rich text editing",
   "type": "module",
   "main": "./dist/index.cjs",
@@ -81,7 +81,7 @@
     "esbuild-style-plugin": "^1.6.3",
     "postcss": "^8.5.3",
     "postcss-load-config": "^6.0.1",
-    "tailwindcss": "^4.0.15",
+    "tailwindcss": "3",
     "tsup": "^8.0.0",
     "typescript": "^5.0.0"
   },

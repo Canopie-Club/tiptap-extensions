@@ -106,7 +106,7 @@ onBeforeUnmount(() => {
 </script>
 
 <style lang="scss">
-@import "./extensions/DragHandle.scss";
+@use "./extensions/DragHandle.scss";
 
 .editor-wrapper {
     @apply relative mx-auto overflow-hidden rounded-lg border border-gray-200 bg-white;

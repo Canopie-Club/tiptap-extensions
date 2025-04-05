@@ -1,12 +1,8 @@
 <template>
     <ul v-if="isBulletList">
-        {{
-            content.text
-        }}
         <slot />
     </ul>
     <div v-else>
-        {{ content.text }}
         <slot />
     </div>
 </template>

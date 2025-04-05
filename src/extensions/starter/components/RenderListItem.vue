@@ -1,10 +1,8 @@
 <template>
     <li v-if="isListItem">
-        {{ content.text }}
         <slot />
     </li>
     <div v-else>
-        {{ content.text }}
         <slot />
     </div>
 </template>
