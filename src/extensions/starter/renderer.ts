@@ -1,41 +1,32 @@
 import type { RenderMap } from "../../types/renderer";
-import { defineAsyncComponent } from "vue";
+import Paragraph from "./components/RenderParagraph.vue";
+import Heading from "./components/RenderHeader.vue";
+import Blockquote from "./components/RenderBlockquote.vue";
+import BulletList from "./components/RenderBulletList.vue";
+import CodeBlock from "./components/RenderCodeBlock.vue";
+import Document from "./components/RenderDocument.vue";
+import HardBreak from "./components/RenderHardBreak.vue";
+import HorizontalRule from "./components/RenderHorizontalRule.vue";
+import ListItem from "./components/RenderListItem.vue";
+import OrderedList from "./components/RenderOrderedList.vue";
+import Bold from "./components/RenderBold.vue";
+import Code from "./components/RenderCode.vue";
+import Italic from "./components/RenderItalic.vue";
+import Strike from "./components/RenderStrike.vue";
 
 export const renderComponents: RenderMap = {
-  paragraph: defineAsyncComponent(
-    () => import("./components/RenderParagraph.vue"),
-  ),
-  heading: defineAsyncComponent(() => import("./components/RenderHeader.vue")),
-
-  blockquote: defineAsyncComponent(
-    () => import("./components/RenderBlockquote.vue"),
-  ),
-  bulletList: defineAsyncComponent(
-    () => import("./components/RenderBulletList.vue"),
-  ),
-
-  codeBlock: defineAsyncComponent(
-    () => import("./components/RenderCodeBlock.vue"),
-  ),
-  doc: defineAsyncComponent(() => import("./components/RenderDocument.vue")),
-
-  hardBreak: defineAsyncComponent(
-    () => import("./components/RenderHardBreak.vue"),
-  ),
-  horizontalRule: defineAsyncComponent(
-    () => import("./components/RenderHorizontalRule.vue"),
-  ),
-  listItem: defineAsyncComponent(
-    () => import("./components/RenderListItem.vue"),
-  ),
-
-  orderedList: defineAsyncComponent(
-    () => import("./components/RenderOrderedList.vue"),
-  ),
-  bold: defineAsyncComponent(() => import("./components/RenderBold.vue")),
-
-  code: defineAsyncComponent(() => import("./components/RenderCode.vue")),
-
-  italic: defineAsyncComponent(() => import("./components/RenderItalic.vue")),
-  strike: defineAsyncComponent(() => import("./components/RenderStrike.vue")),
+  paragraph: Paragraph,
+  heading: Heading,
+  blockquote: Blockquote,
+  bulletList: BulletList,
+  codeBlock: CodeBlock,
+  doc: Document,
+  hardBreak: HardBreak,
+  horizontalRule: HorizontalRule,
+  listItem: ListItem,
+  orderedList: OrderedList,
+  bold: Bold,
+  code: Code,
+  italic: Italic,
+  strike: Strike,
 };

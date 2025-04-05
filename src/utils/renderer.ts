@@ -17,7 +17,7 @@ export const buildRenderer: (maps: RenderMap[]) => RenderFunction = (maps) => {
     console.log(content.type, content);
 
     if (content.type === "text" && !children.length) {
-      return content.text;
+      return content.text as string;
     }
 
     if (content.text) children.unshift(content.text);
