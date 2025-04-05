@@ -6,6 +6,7 @@
 import type { RenderMap } from "../types/renderer";
 import { buildRenderer } from "../utils/renderer";
 import type { JSONContent } from "@tiptap/core";
+import { ref } from "vue";
 
 const props = defineProps<{
     content: JSONContent;
