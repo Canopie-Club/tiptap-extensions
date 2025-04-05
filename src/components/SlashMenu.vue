@@ -35,8 +35,8 @@
 </template>
 
 <script lang="ts" setup>
-import { type Editor } from "@tiptap/vue-3";
-import type { SlashMenuItem } from "~/assets/tiptap/types/menu";
+import { type Editor, type EditorEvents } from "@tiptap/vue-3";
+import type { SlashMenuItem } from "../types/menu";
 
 interface Position {
     left: number;
@@ -142,10 +142,7 @@ const executeCommand = (item: SlashMenuItem) => {
 function handleTransaction({
     editor,
     transaction,
-}: {
-    editor: Editor;
-    transaction: string;
-}) {
+}: EditorEvents["transaction"]) {
     // console.log("Transaction captured", editor, transaction);
     // Check for '/' at the beginning of a paragraph
     const { selection } = editor.state;
@@ -203,13 +200,11 @@ const keydownHandler = (e: KeyboardEvent) => {
 };
 
 onMounted(() => {
-    // @ts-ignore
     props.editor.on("transaction", handleTransaction);
     editorDOM.addEventListener("keydown", keydownHandler, true);
 });
 
 onBeforeUnmount(() => {
-    // @ts-ignore
     props.editor.off("transaction", handleTransaction);
     editorDOM.removeEventListener("keydown", keydownHandler, true);
 });
