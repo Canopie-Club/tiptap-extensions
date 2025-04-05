@@ -1,19 +1,8 @@
-import { type JSONContent } from '@tiptap/core';
-import { defineComponent, h, defineAsyncComponent } from 'vue';
+import { defineAsyncComponent } from "vue";
+import type { RenderMap } from "../starter";
 
-const renderComponents: Record<string, any> = {
+export const renderComponents: RenderMap = {
   fancyBorder: defineAsyncComponent(
-    () => import('./components/RenderFancyBorder.vue'),
+    () => import("./components/RenderFancyBorder.vue"),
   ),
 };
-
-export function renderComponent(content: JSONContent) {
-  const component = renderComponents[content.type || ''];
-  if (component) {
-    return h(component, { content });
-  } else {
-    return h('div', {
-      innerHTML: content.text,
-    });
-  }
-}

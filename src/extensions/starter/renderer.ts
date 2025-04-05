@@ -1,7 +1,7 @@
-import { type JSONContent } from "@tiptap/core";
-import { defineComponent, h, defineAsyncComponent } from "vue";
+import type { RenderMap } from "../../types/renderer";
+import { defineAsyncComponent } from "vue";
 
-const renderComponents: Record<string, any> = {
+export const renderComponents: RenderMap = {
   paragraph: defineAsyncComponent(
     () => import("./components/RenderParagraph.vue"),
   ),
@@ -39,14 +39,3 @@ const renderComponents: Record<string, any> = {
   italic: defineAsyncComponent(() => import("./components/RenderItalic.vue")),
   strike: defineAsyncComponent(() => import("./components/RenderStrike.vue")),
 };
-
-export function renderComponent(content: JSONContent) {
-  const component = renderComponents[content.type || ""];
-  if (component) {
-    return h(component, { content });
-  } else {
-    return h("div", {
-      innerHTML: content.text,
-    });
-  }
-}
