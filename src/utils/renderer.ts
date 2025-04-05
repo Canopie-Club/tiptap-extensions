@@ -1,5 +1,6 @@
 import type { JSONContent } from "@tiptap/core";
 import type { RenderFunction, RenderMap, VueNode } from "../types/renderer";
+import { h } from "vue";
 
 export const buildRenderer: (maps: RenderMap[]) => RenderFunction = (maps) => {
   const map = Object.fromEntries(
