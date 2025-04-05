@@ -1,4 +1,5 @@
 <template>
+    <div>RENDERER</div>
     <component :is="renderedContent"></component>
 </template>
 

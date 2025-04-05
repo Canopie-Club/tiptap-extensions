@@ -1,4 +1,5 @@
 <template>
+    <div>paragraph</div>
     <p v-if="isParagraph">
         <slot />
     </p>
