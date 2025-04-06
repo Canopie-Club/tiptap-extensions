@@ -37,6 +37,8 @@
 <script lang="ts" setup>
 import { type Editor, type EditorEvents } from "@tiptap/vue-3";
 import type { SlashMenuItem } from "../types/menu";
+import { ref, computed, onMounted, onBeforeUnmount, nextTick } from 'vue';
+import { onKeyStroke } from '@vueuse/core';
 
 interface Position {
     left: number;

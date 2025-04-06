@@ -1,9 +1,9 @@
 import type { JSONContent } from "@tiptap/core";
-import type { Component, RendererElement, RendererNode } from "vue";
+import type { Component, RendererElement, RendererNode, VNode } from "vue";
 
 export type RenderFunction = (content: JSONContent) => VueNode | string;
 
-export type VueNode = globalThis.VNode<
+export type VueNode = VNode<
   RendererNode,
   RendererElement,
   {

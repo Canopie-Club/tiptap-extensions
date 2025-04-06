@@ -38,7 +38,7 @@
 <script setup lang="ts">
 import { NodeViewWrapper } from '@tiptap/vue-3'
 import { Editor } from '@tiptap/core'
-import { ImageSelectorOptions } from '../extension'
+import type { ImageSelectorOptions } from '../extension'
 
 const props = defineProps({
   editor: {

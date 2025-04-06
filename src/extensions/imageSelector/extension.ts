@@ -87,7 +87,7 @@ export const ImageSelector = Node.create<ImageSelectorOptions>({
   },
 
   addNodeView() {
-    return VueNodeViewRenderer(NodeViewImageSelector);
+    return VueNodeViewRenderer(NodeViewImageSelector as any);
   },
 
   addCommands() {

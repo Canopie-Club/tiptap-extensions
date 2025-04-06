@@ -5,7 +5,11 @@ import toolboxConfig from "./tailwind.toolbox.js";
 // TODO: Integrate the following into the toolbox config
 
 export default {
-  content: [],
+  content: [
+    './src/**/*.{vue,js,ts,jsx,tsx}',
+    './components/**/*.{vue,js,ts,jsx,tsx}',
+    './assets/**/*.{vue,js,ts,jsx,tsx}'
+  ],
   // Extend the toolbox configuration
   presets: [toolboxConfig],
   // ...toolboxConfig,

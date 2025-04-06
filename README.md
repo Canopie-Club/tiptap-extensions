@@ -2,6 +2,21 @@
 
 A collection of custom TipTap extensions for rich text editing.
 
+## Development
+
+This library is built using Vite and Vue 3. To develop locally:
+
+```bash
+# Install dependencies
+bun install
+
+# Run development server
+bun run dev
+
+# Build the library
+bun run build:lib
+```
+
 ## Features
 
 - **FancyBorder Extension**: Adds a configurable border around content blocks with the ability to adjust color, width, and style directly in the editor

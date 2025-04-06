@@ -92,7 +92,7 @@ export const FancyBorder = Node.create<FancyBorderOptions>({
   },
 
   addNodeView() {
-    return VueNodeViewRenderer(NodeViewFancyBorder);
+    return VueNodeViewRenderer(NodeViewFancyBorder as any);
   },
 
   addCommands() {
