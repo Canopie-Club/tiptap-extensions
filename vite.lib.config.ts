@@ -2,14 +2,13 @@ import { defineConfig } from "vite";
 import vue from "@vitejs/plugin-vue";
 import { resolve } from "path";
 import dts from "vite-plugin-dts";
-import { loadConfigFromFile } from "vite";
+import type { ConfigEnv, UserConfig } from "vite";
 
-export default defineConfig(async ({ command, mode }) => {
+export default defineConfig(async ({ command, mode }: ConfigEnv): Promise<UserConfig> => {
   function rel(path: string) {
     return resolve(__dirname, path);
   }
 
-  // Custom PostCSS config path for library build
   process.env.POSTCSS_CONFIG_PATH = rel("postcss.lib.config.js");
 
   return {
@@ -30,27 +29,22 @@ export default defineConfig(async ({ command, mode }) => {
     ],
     build: {
       lib: {
-        entry: {
-          index: rel("src/index.ts"),
-          fancyBorder: rel("src/extensions/fancyBorder/index.ts"),
-          imageSelector: rel("src/extensions/imageSelector/index.ts"),
-          starter: rel("src/extensions/starter/index.ts"),
-          SlashMenu: rel("src/components/SlashMenu.vue"),
-        },
-        // formats: ["es", "cjs"],
+        entry: rel("src/index.ts"),
+        formats: ["es", "cjs"],
+        fileName: (format) => `index.${format}.js`, // Ensure this matches package.json exports
       },
       sourcemap: true,
       rollupOptions: {
-        external: ["vue", "@tiptap/core", "@tiptap/vue-3"],
+        external: ["vue", "@tiptap/core", "@tiptap/vue-3", "@tiptap/pm"], // Added @tiptap/pm
         output: {
           globals: {
             vue: "Vue",
             "@tiptap/core": "TiptapCore",
             "@tiptap/vue-3": "TiptapVue3",
+            "@tiptap/pm": "ProseMirror", // Added @tiptap/pm global
           },
           assetFileNames: "style.[ext]",
-          entryFileNames: "[name].[format].js",
-          chunkFileNames: "[name]-[hash].[format].js",
+          // Removed entry/chunk filenames to use default vite lib mode behavior or fileName function
         },
       },
       outDir: "dist",
@@ -60,12 +54,8 @@ export default defineConfig(async ({ command, mode }) => {
       alias: {
         "@": rel("src"),
       },
-    },
-    css: {
-      postcss: {
-        // Use the custom PostCSS config for the library
-        config: rel("postcss.lib.config.js"),
-      },
+      // Add dedupe configuration
+      dedupe: ["vue", "@tiptap/core", "@tiptap/vue-3", "@tiptap/pm"],
     },
   };
 });

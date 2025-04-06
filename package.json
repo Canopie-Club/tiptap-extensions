@@ -8,34 +8,13 @@
   "types": "./dist/index.d.ts",
   "exports": {
     ".": {
-      "import": "./dist/index.js",
-      "require": "./dist/index.cjs",
+      "import": "./dist/index.es.js",
+      "require": "./dist/index.cjs.js",
       "types": "./dist/index.d.ts"
-    },
-    "./fancyBorder": {
-      "import": "./dist/extensions/fancyBorder/index.js",
-      "require": "./dist/extensions/fancyBorder/index.cjs",
-      "types": "./dist/extensions/fancyBorder/index.d.ts"
-    },
-    "./imageSelector": {
-      "import": "./dist/extensions/imageSelector/index.js",
-      "require": "./dist/extensions/imageSelector/index.cjs",
-      "types": "./dist/extensions/imageSelector/index.d.ts"
-    },
-    "./starter": {
-      "import": "./dist/extensions/starter/index.js",
-      "require": "./dist/extensions/starter/index.cjs",
-      "types": "./dist/extensions/starter/index.d.ts"
-    },
-    "./SlashMenu": {
-      "import": "./dist/components/SlashMenu.js",
-      "require": "./dist/components/SlashMenu.cjs",
-      "types": "./dist/components/SlashMenu.d.ts"
     },
     "./style.css": {
       "import": "./dist/style.css",
-      "require": "./dist/style.css",
-      "types": "./dist/index.d.ts"
+      "require": "./dist/style.css"
     }
   },
   "files": [

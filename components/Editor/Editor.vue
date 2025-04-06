@@ -23,22 +23,22 @@
 
 <script lang="ts" setup>
 import { ref, onMounted, onBeforeUnmount, nextTick } from "vue";
+import { useElementBounding } from '@vueuse/core';
 import { Editor, EditorContent } from "@tiptap/vue-3";
 import Placeholder from "@tiptap/extension-placeholder";
 import BubbleMenu from "@tiptap/extension-bubble-menu";
-// For development, we're importing directly from the src directory
-// In production, this would be from '@canopie-club/tiptap-extensions'
+// Using the consolidated build
+// Use named exports from the package entry point
 import {
     FancyBorder as BorderExtension,
     borderMenu,
-} from "../../dist/fancyBorder.es.js";
-import {
     ImageSelector as ImageSelectorExtension,
     imageSelectorMenu,
-} from "../../dist/imageSelector.es.js";
-import { StarterExtension, starterMenu } from "../../dist/starter.es.js";
-import { SlashMenu } from "../../dist/index.es.js";
-import "../../dist/style.css";
+    StarterExtension,
+    starterMenu,
+    SlashMenu,
+} from "@canopie-club/tiptap-extensions"; // Changed import path
+import "@canopie-club/tiptap-extensions/style.css"; // Changed import path
 
 // Import custom extensions
 import { createDragHandleExtension } from "./extensions/DragHandleConfig";
