@@ -50,8 +50,8 @@
     "generate": "nuxt generate",
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare",
-    "build:lib": "vite build",
-    "dev:lib": "vite build --watch",
+    "build:lib": "vite build --config vite.lib.config.ts",
+    "dev:lib": "vite build --watch --config vite.lib.config.ts",
     "typecheck": "tsc --project tsconfig.lib.json --noEmit",
     "prepublishOnly": "bun run build:lib && cp README-npm.md README.md"
   },
