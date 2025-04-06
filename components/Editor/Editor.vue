@@ -31,14 +31,14 @@ import BubbleMenu from "@tiptap/extension-bubble-menu";
 import {
     FancyBorder as BorderExtension,
     borderMenu,
-} from "../../dist/extensions/fancyBorder";
+} from "../../dist/fancyBorder.es.js";
 import {
     ImageSelector as ImageSelectorExtension,
     imageSelectorMenu,
-} from "../../dist/extensions/imageSelector";
-import { StarterExtension, starterMenu } from "../../dist/extensions/starter";
-import { SlashMenu } from "../../dist";
-import "../../dist/index.css";
+} from "../../dist/imageSelector.es.js";
+import { StarterExtension, starterMenu } from "../../dist/starter.es.js";
+import { SlashMenu } from "../../dist/index.es.js";
+import "../../dist/style.css";
 
 // Import custom extensions
 import { createDragHandleExtension } from "./extensions/DragHandleConfig";
