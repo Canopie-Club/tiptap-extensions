@@ -15,7 +15,7 @@
             :editor="editor as Editor"
             :show="showSlashMenu"
             :position-offset="{ top, left }"
-            :items="[...starterMenu, ...borderMenu]"
+            :items="[...starterMenu, ...borderMenu, ...imageSelectorMenu]"
             @command-executed="hideSlashMenu"
         />
     </div>
@@ -32,6 +32,10 @@ import {
     FancyBorder as BorderExtension,
     borderMenu,
 } from "../../dist/extensions/fancyBorder";
+import {
+    ImageSelector as ImageSelectorExtension,
+    imageSelectorMenu,
+} from "../../dist/extensions/imageSelector";
 import { StarterExtension, starterMenu } from "../../dist/extensions/starter";
 import { SlashMenu } from "../../dist";
 import "../../dist/index.css";
@@ -79,6 +83,7 @@ onMounted(() => {
         extensions: [
             StarterExtension,
             BorderExtension,
+            ImageSelectorExtension,
             Placeholder.configure({
                 placeholder: "Type / to open menu…",
             }),

@@ -6,6 +6,7 @@ export default defineConfig({
   entry: [
     "src/index.ts",
     "src/extensions/fancyBorder/index.ts",
+    "src/extensions/imageSelector/index.ts",
     "src/extensions/starter/index.ts",
     "src/components/SlashMenu.vue",
   ],
