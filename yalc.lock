@@ -1,0 +1,10 @@
+{
+  "version": "v1",
+  "packages": {
+    "@canopie-club/tiptap-extensions": {
+      "signature": "bcf1655295ce2e913b3594d801e858ac",
+      "file": true,
+      "replaced": "^0.1.1"
+    }
+  }
+}

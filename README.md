@@ -2,30 +2,6 @@
 
 A collection of custom TipTap extensions for rich text editing.
 
-## Development
-
-This library is built using Vite and Vue 3. To develop locally:
-
-```bash
-# Install dependencies
-bun install
-
-# Development commands
-bun run dev       # Run Nuxt development server for testing
-bun run dev:lib   # Watch and build library in development mode
-
-# Build commands
-bun run build     # Build Nuxt app for testing
-bun run build:lib # Build the library for distribution
-```
-
-The project uses separate configurations for the library build (Vite) and the demo app (Nuxt):
-
-- Library build: Uses `vite.lib.config.ts` and `postcss.lib.config.js`
-- Demo app: Uses Nuxt's built-in configuration system
-
-This separation ensures that the library can be built independently from the demo application.
-
 ## Features
 
 - **FancyBorder Extension**: Adds a configurable border around content blocks with the ability to adjust color, width, and style directly in the editor

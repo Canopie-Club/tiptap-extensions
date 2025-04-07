@@ -46,6 +46,10 @@
     "@vueuse/core": "^12.7.0",
     "@vueuse/nuxt": "12.7.0",
     "nuxt": "^3.15.4",
+    "prosemirror-model": "^1.25.0",
+    "prosemirror-state": "^1.4.3",
+    "prosemirror-transform": "^1.10.3",
+    "prosemirror-view": "^1.39.1",
     "sass": "^1.85.1",
     "tailwindcss-animate": "^1.0.7",
     "tippy.js": "^6.3.7",
@@ -58,7 +62,7 @@
     "vue": "^3.0.0"
   },
   "devDependencies": {
-    "@canopie-club/tiptap-extensions": "^0.1.1",
+    "@canopie-club/tiptap-extensions": "file:.yalc/@canopie-club/tiptap-extensions",
     "@vitejs/plugin-vue": "^5.0.4",
     "autoprefixer": "^10.4.21",
     "postcss": "^8.5.3",
