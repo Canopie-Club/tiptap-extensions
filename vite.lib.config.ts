@@ -36,13 +36,28 @@ export default defineConfig(
         },
         sourcemap: true,
         rollupOptions: {
-          external: ["vue", "@tiptap/core", "@tiptap/vue-3", "@tiptap/pm"], // Added @tiptap/pm
+          external: [
+            "vue", 
+            "@tiptap/core", 
+            "@tiptap/vue-3", 
+            "@tiptap/pm",
+            "@tiptap/starter-kit",
+            "prosemirror-model",
+            "prosemirror-state",
+            "prosemirror-transform",
+            "prosemirror-view"
+          ],
           output: {
             globals: {
               vue: "Vue",
               "@tiptap/core": "TiptapCore",
               "@tiptap/vue-3": "TiptapVue3",
-              "@tiptap/pm": "ProseMirror", // Added @tiptap/pm global
+              "@tiptap/pm": "ProseMirror",
+              "@tiptap/starter-kit": "TiptapStarterKit",
+              "prosemirror-model": "ProseMirrorModel",
+              "prosemirror-state": "ProseMirrorState",
+              "prosemirror-transform": "ProseMirrorTransform",
+              "prosemirror-view": "ProseMirrorView"
             },
             assetFileNames: "style.[ext]",
             // Removed entry/chunk filenames to use default vite lib mode behavior or fileName function
@@ -56,7 +71,17 @@ export default defineConfig(
           "@": rel("src"),
         },
         // Add dedupe configuration
-        dedupe: ["vue", "@tiptap/core", "@tiptap/vue-3", "@tiptap/pm"],
+        dedupe: [
+          "vue", 
+          "@tiptap/core", 
+          "@tiptap/vue-3", 
+          "@tiptap/pm",
+          "@tiptap/starter-kit",
+          "prosemirror-model",
+          "prosemirror-state",
+          "prosemirror-transform",
+          "prosemirror-view"
+        ],
       },
       optimizeDeps: {
         include: [

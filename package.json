@@ -1,6 +1,6 @@
 {
   "name": "@canopie-club/tiptap-extensions",
-  "version": "0.1.11",
+  "version": "0.1.12",
   "description": "Custom TipTap extensions for rich text editing",
   "type": "module",
   "main": "./dist/index.js",
@@ -59,6 +59,12 @@
   "peerDependencies": {
     "@tiptap/core": "^2.0.0",
     "@tiptap/vue-3": "^2.0.0",
+    "@tiptap/pm": "^2.0.0",
+    "@tiptap/starter-kit": "^2.0.0",
+    "prosemirror-model": "^1.0.0",
+    "prosemirror-state": "^1.0.0",
+    "prosemirror-transform": "^1.0.0",
+    "prosemirror-view": "^1.0.0",
     "vue": "^3.0.0"
   },
   "devDependencies": {
