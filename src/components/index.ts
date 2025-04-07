@@ -1,5 +1,6 @@
 import SlashMenuComponent from "./SlashMenu.vue";
 import RendererComponent from "./Renderer.vue";
+import BubbleMenuComponent from "./BubbleMenu.vue";
 import type { JSONContent } from "@tiptap/core";
 import type { SlashMenuItem } from "../types/menu";
 import type { RenderMap } from "../types/renderer";
@@ -15,6 +16,10 @@ export interface SlashMenuProps {
 export interface RendererProps {
   content: JSONContent;
   renderMaps: RenderMap[];
+}
+
+export interface BubbleMenuProps {
+  editor?: Editor;
 }
 
 // Export the components with their proper types
@@ -33,5 +38,11 @@ export const Renderer = RendererComponent as unknown as {
   };
 };
 
+export const BubbleMenu = BubbleMenuComponent as unknown as {
+  new (): {
+    $props: BubbleMenuProps;
+  };
+};
+
 // Also re-export as default if needed
-export default { SlashMenu, Renderer };
+export default { SlashMenu, Renderer, BubbleMenu };

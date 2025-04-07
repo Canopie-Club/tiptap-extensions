@@ -6,6 +6,7 @@ export * from "./utils/renderer";
 // Export main components
 export * from "./components";
 export { SlashMenu } from "./components";
+export { BubbleMenu } from "./components";
 
 // Export FancyBorder extension
 export { FancyBorder } from "./extensions/fancyBorder";
