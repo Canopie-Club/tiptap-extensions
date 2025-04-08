@@ -1,6 +1,6 @@
 {
   "name": "@canopie-club/tiptap-extensions",
-  "version": "0.1.12",
+  "version": "0.1.13",
   "description": "Custom TipTap extensions for rich text editing",
   "type": "module",
   "main": "./dist/index.js",
@@ -35,6 +35,7 @@
     "prepublishOnly": "bun run build:lib && cp README-npm.md README.md"
   },
   "dependencies": {
+    "@iconify/vue": "^4.3.0",
     "@nuxtjs/tailwindcss": "6.13.1",
     "@radix-ui/colors": "^3.0.0",
     "@tiptap-pro/extension-drag-handle": "^2.17.5",
@@ -61,10 +62,10 @@
     "@tiptap/vue-3": "^2.0.0",
     "@tiptap/pm": "^2.0.0",
     "@tiptap/starter-kit": "^2.0.0",
-    "prosemirror-model": "^1.0.0",
-    "prosemirror-state": "^1.0.0",
-    "prosemirror-transform": "^1.0.0",
-    "prosemirror-view": "^1.0.0",
+    "prosemirror-model": "^1.25.0",
+    "prosemirror-state": "^1.4.3",
+    "prosemirror-transform": "^1.10.3",
+    "prosemirror-view": "^1.39.1",
     "vue": "^3.0.0"
   },
   "devDependencies": {
@@ -78,6 +79,9 @@
     "typescript": "^5.0.0",
     "vite": "^5.2.11",
     "vite-plugin-dts": "^3.7.3"
+  },
+  "resolutions": {
+    "prosemirror-model": "^1.25.0"
   },
   "keywords": [
     "tiptap",

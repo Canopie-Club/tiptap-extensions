@@ -9,7 +9,7 @@ export const imageSelector: SlashMenuItem = {
   title: "Image",
   slashTag: "/image",
   description: "Insert an image",
-  icon: "🖼️",
+  icon: "radix-icons:image",
   command: ({ editor, range }) => {
     (editor as ImageSelectorEditor)
       .chain()

@@ -175,6 +175,14 @@ export const horizontalRule: SlashMenuItem = {
  * Each item defines a content block that can be inserted via the slash menu
  */
 const defaultMenu: SlashMenuItem[] = [
+  bulletList,
+  orderedList,
+  blockquote,
+  codeBlock,
+  horizontalRule,
+];
+
+export const fullMenu: SlashMenuItem[] = [
   h1,
   h2,
   h3,

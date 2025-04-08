@@ -18,7 +18,10 @@
             class="slash-menu-item"
             :class="{ active: index === selected, [`index-${index}`]: true }"
         >
-            <div class="slash-menu-item-icon">{{ item.icon }}</div>
+            <div class="slash-menu-item-icon">
+              <Icon :icon="item.icon" v-if="isIconifyString(item.icon)" />
+              <template v-else>{{ item.icon }}</template>
+            </div>
             <div class="slash-menu-item-content">
                 <div class="flex justify-between">
                     <div class="slash-menu-item-title">{{ item.title }}</div>
@@ -26,9 +29,9 @@
                         {{ item.slashTag }}
                     </div>
                 </div>
-                <div class="slash-menu-item-description">
-                    {{ item.description }}
-                </div>
+<!--                <div class="slash-menu-item-description">-->
+<!--                    {{ item.description }}-->
+<!--                </div>-->
             </div>
         </div>
     </div>
@@ -39,6 +42,7 @@ import { type Editor, type EditorEvents } from "@tiptap/vue-3";
 import type { SlashMenuItem } from "../types/menu";
 import { ref, computed, onMounted, onBeforeUnmount, nextTick } from 'vue';
 import { onKeyStroke } from '@vueuse/core';
+import { Icon } from "@iconify/vue";
 
 interface Position {
     left: number;
@@ -55,6 +59,10 @@ const emit = defineEmits<{
     "command-executed": [];
 }>();
 
+function isIconifyString(icon: string): boolean {
+  return /\w+:\w+/.test(icon);
+}
+
 onKeyStroke(["ArrowUp", "ArrowDown", "Enter"], (e) => {
     e.stopPropagation();
     console.log(e.key, show.value);
@@ -63,7 +71,7 @@ onKeyStroke(["ArrowUp", "ArrowDown", "Enter"], (e) => {
     if (e.key === "ArrowUp" || e.key === "ArrowDown") {
         e.preventDefault();
 
-        let selection = selected.value ?? 0;
+        let selection = selected.value ?? (e.key === "ArrowDown" ? -1 : 0);
 
         selection =
             e.key === "ArrowDown"
@@ -212,18 +220,20 @@ onBeforeUnmount(() => {
 });
 </script>
 
-<style scoped>
+<style>
 .slash-menu {
     position: absolute;
     z-index: 10;
     min-width: 280px;
     overflow: scroll;
-    border-radius: 0.375rem;
     background-color: white;
     box-shadow:
         0 10px 15px -3px rgba(0, 0, 0, 0.1),
         0 4px 6px -2px rgba(0, 0, 0, 0.05);
     max-height: 340px;
+    border-radius: 0.35rem;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+   @apply shadow-sm;
 }
 
 .slash-menu .slash-menu-item {
@@ -234,11 +244,7 @@ onBeforeUnmount(() => {
         color, background-color, border-color, text-decoration-color, fill,
         stroke;
     transition-duration: 200ms;
-    padding: 0.75rem;
-}
-
-.slash-menu .slash-menu-item:hover {
-    background-color: rgb(249, 250, 251);
+    padding: 0.25rem 0.5rem;
 }
 
 .slash-menu .slash-menu-item .slash-menu-item-icon {
@@ -257,14 +263,11 @@ onBeforeUnmount(() => {
     flex: 1 1 0%;
 }
 
-.slash-menu .slash-menu-item .slash-menu-item-content .slash-menu-item-title {
-    font-weight: 600;
-}
-
 .slash-menu .slash-menu-item .slash-menu-item-content .slash-menu-item-slash {
     font-size: 0.875rem;
     font-weight: 600;
     color: rgb(209, 213, 219);
+    opacity: 0.0;
 }
 
 .slash-menu
@@ -275,11 +278,28 @@ onBeforeUnmount(() => {
     color: rgb(107, 114, 128);
 }
 
+
+.slash-menu .slash-menu-item:hover {
+  background-color: rgb(249, 250, 251);
+}
+
+.slash-menu .slash-menu-item:hover .slash-menu-item-icon {
+  background-color: rgb(217, 223, 234);
+}
+
+.slash-menu .slash-menu-item:hover .slash-menu-item-slash {
+  opacity: 1;
+}
+
 .slash-menu .slash-menu-item.active {
     background-color: rgb(243, 244, 246);
 }
 
 .slash-menu .slash-menu-item.active .slash-menu-item-icon {
-    background-color: rgb(209, 213, 219);
+    background-color: rgb(217, 223, 234);
+}
+
+.slash-menu .slash-menu-item.active .slash-menu-item-slash {
+  opacity: 1;
 }
 </style>

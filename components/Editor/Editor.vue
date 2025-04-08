@@ -37,15 +37,11 @@ import {
     StarterExtension,
     starterMenu,
     SlashMenu,
-} from "@canopie-club/tiptap-extensions"; // Changed import path
-import "@canopie-club/tiptap-extensions/style.css"; // Changed import path
+    BubbleMenu as EditorBubbleMenu,
+} from "~/src"; // Changed import path
 
 // Import custom extensions
 import { createDragHandleExtension } from "./extensions/DragHandleConfig";
-
-// Import modular components
-import EditorBubbleMenu from "./menus/BubbleMenu.vue";
-import EditorSlashMenu from "./menus/SlashMenu.vue";
 
 // State for editor
 const editor = ref<Editor | null>(null);
