@@ -18,6 +18,11 @@ export { ImageSelector } from "./extensions/imageSelector";
 export { imageSelectorMenu } from "./extensions/imageSelector";
 export { renderComponents as imageSelectorRenderComponents } from "./extensions/imageSelector/renderer";
 
+// Export YouTube extension
+export { Youtube } from "./extensions/youtube";
+export { youtubeMenuItems } from "./extensions/youtube/menu";
+export { youtubeRenderers } from "./extensions/youtube/renderer";
+
 // Export Starter extension
 export { StarterExtension } from "./extensions/starter";
 export { starterMenu } from "./extensions/starter";

@@ -8,8 +8,9 @@
 import { starterData } from "~/assets/demo/starter";
 import { buildRenderer } from "~/src";
 import { renderComponents } from "~/src/extensions/starter/renderer";
+import { youtubeRenderers } from "~/src/extensions/youtube/renderer";
 
-const renderer = buildRenderer([renderComponents]);
+const renderer = buildRenderer([renderComponents, youtubeRenderers]);
 
 const renderedData = ref(renderer(starterData));
 </script>

@@ -15,7 +15,7 @@
             :editor="editor as Editor"
             :show="showSlashMenu"
             :position-offset="{ top, left }"
-            :items="[...starterMenu, ...borderMenu, ...imageSelectorMenu]"
+            :items="[...starterMenu, ...borderMenu, ...imageSelectorMenu, ...youtubeMenuItems]"
             @command-executed="hideSlashMenu"
         />
     </div>
@@ -36,6 +36,8 @@ import {
     imageSelectorMenu,
     StarterExtension,
     starterMenu,
+    Youtube as YoutubeExtension,
+    youtubeMenuItems,
     SlashMenu,
     BubbleMenu as EditorBubbleMenu,
 } from "~/src"; // Changed import path
@@ -80,6 +82,7 @@ onMounted(() => {
             StarterExtension,
             BorderExtension,
             ImageSelectorExtension,
+            YoutubeExtension,
             Placeholder.configure({
                 placeholder: "Type / to open menu…",
             }),
