@@ -86,31 +86,22 @@ const updateBorderStyle = (event: Event) => {
 
 <style lang="scss" scoped>
 .fancy-border-node-view {
-  position: relative;
-  margin: 1rem 0;
+  @apply relative my-4;
 
   .fancy-border-controls {
-    display: flex;
-    gap: 1rem;
-    margin-bottom: 0.5rem;
-    background-color: #f3f4f6;
-    padding: 0.5rem;
-    border-radius: 0.25rem;
+    @apply flex gap-4 mb-2 bg-gray-100 p-2 rounded;
 
     .control-group {
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
+      @apply flex items-center gap-2;
 
       label {
-        font-size: 0.875rem;
-        font-weight: 500;
+        @apply text-sm font-medium;
       }
     }
   }
 
   .fancy-border-content {
-    position: relative;
+    @apply relative;
   }
 }
 </style>

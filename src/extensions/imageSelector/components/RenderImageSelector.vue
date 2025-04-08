@@ -25,36 +25,22 @@ defineProps<{ content: JSONContent }>();
 
 <style scoped>
 .image-selector-render {
-  margin: 1rem 0;
-  border-radius: 0.5rem;
-  overflow: hidden;
+  @apply my-4 rounded-lg overflow-hidden;
 }
 
 .image-selector-render img {
-  display: block;
-  width: 100%;
-  height: auto;
-  object-fit: contain;
+  @apply block w-full h-auto object-contain;
 }
 
 .image-placeholder {
-  background-color: #f3f4f6;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  height: 100%;
-  min-height: 120px;
+  @apply bg-gray-100 flex flex-col items-center justify-center w-full h-full min-h-[120px];
 }
 
 .placeholder-icon {
-  color: #6b7280;
-  margin-bottom: 0.5rem;
+  @apply text-gray-500 mb-2;
 }
 
 .placeholder-text {
-  color: #6b7280;
-  font-size: 0.9rem;
+  @apply text-gray-500 text-sm;
 }
 </style>

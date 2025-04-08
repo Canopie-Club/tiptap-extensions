@@ -90,93 +90,57 @@ const removeImage = () => {
 
 <style lang="scss" scoped>
 .image-selector-node-view {
-  position: relative;
-  margin: 1rem 0;
+  @apply relative my-4;
 
   .image-selector-container {
-    position: relative;
-    width: 100%;
-    min-height: 120px;
-    border-radius: 0.5rem;
-    overflow: hidden;
+    @apply relative w-full min-h-[120px] rounded-lg overflow-hidden;
 
     .image-placeholder {
-      background-color: #f3f4f6;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      width: 100%;
-      height: 100%;
-      min-height: 200px;
-      cursor: pointer;
-      transition: background-color 0.2s;
+      @apply bg-gray-100 flex flex-col items-center justify-center w-full h-full min-h-[200px] cursor-pointer transition-colors duration-200;
 
       &:hover {
-        background-color: #e5e7eb;
+        @apply bg-gray-200;
       }
 
       .placeholder-icon {
-        color: #6b7280;
-        margin-bottom: 1rem;
+        @apply text-gray-500 mb-4;
       }
 
       .placeholder-text {
-        color: #6b7280;
-        font-size: 0.9rem;
+        @apply text-gray-500 text-sm;
       }
     }
 
     .image-container {
-      position: relative;
-      width: 100%;
+      @apply relative w-full;
 
       img {
-        display: block;
-        width: 100%;
-        height: auto;
-        object-fit: contain;
+        @apply block w-full h-auto object-contain;
       }
 
       .image-controls {
-        position: absolute;
-        top: 0.5rem;
-        right: 0.5rem;
-        display: flex;
-        gap: 0.5rem;
-        opacity: 0;
-        transition: opacity 0.2s;
+        @apply absolute top-2 right-2 flex gap-2 opacity-0 transition-opacity duration-200;
 
         .control-button {
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          width: 2rem;
-          height: 2rem;
-          background-color: rgba(255, 255, 255, 0.9);
-          border: none;
-          border-radius: 0.25rem;
-          color: #6b7280;
-          cursor: pointer;
-          transition: background-color 0.2s, color 0.2s;
+          @apply flex items-center justify-center w-8 h-8 bg-white/90 border-none rounded text-gray-500 cursor-pointer transition-colors duration-200;
 
           &:hover {
-            background-color: white;
+            @apply bg-white;
           }
 
           &.edit:hover {
-            color: #3b82f6;
+            @apply text-blue-500;
           }
 
           &.remove:hover {
-            color: #ef4444;
+            @apply text-red-500;
           }
         }
       }
 
       &:hover {
         .image-controls {
-          opacity: 1;
+          @apply opacity-100;
         }
       }
     }

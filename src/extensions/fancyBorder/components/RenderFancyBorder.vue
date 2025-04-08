@@ -24,7 +24,6 @@ const borderStyle = computed(() => {
 
 <style lang="scss" scoped>
 .fancy-border {
-    display: block;
-    background-color: rgba(59, 130, 246, 0.05);
+    @apply block bg-blue-500/5;
 }
 </style>

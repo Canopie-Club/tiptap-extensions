@@ -219,83 +219,51 @@ onBeforeUnmount(() => {
     editorDOM.removeEventListener("keydown", keydownHandler, true);
 });
 </script>
-
 <style lang="scss">
 .slash-menu {
-  position: absolute;
-  z-index: 10;
-  min-width: 280px;
-  overflow: scroll;
-  background-color: white;
+  @apply absolute z-10 min-w-[280px] overflow-scroll bg-white max-h-[340px] rounded-[0.35rem] border border-gray-100;
   box-shadow:
     0 10px 15px -3px rgba(0, 0, 0, 0.1),
     0 4px 6px -2px rgba(0, 0, 0, 0.05);
-  max-height: 340px;
-  border-radius: 0.35rem;
-  border: 1px solid rgba(0, 0, 0, 0.1);
-  @apply shadow-sm;
 
   .slash-menu-item {
-    display: flex;
-    cursor: pointer;
-    align-items: center;
-    transition-property:
-      color,
-      background-color,
-      border-color,
-      text-decoration-color,
-      fill,
-      stroke;
-    transition-duration: 200ms;
-    padding: 0.25rem 0.5rem;
+    @apply flex cursor-pointer items-center transition-colors duration-200 px-2 py-1;
 
     .slash-menu-item-icon {
-      margin-right: 0.75rem;
-      display: flex;
-      height: 2rem;
-      width: 2rem;
-      align-items: center;
-      justify-content: center;
-      border-radius: 0.25rem;
-      background-color: rgb(243, 244, 246);
-      font-weight: 700;
+      @apply mr-3 flex h-8 w-8 items-center justify-center rounded bg-gray-100 font-bold;
     }
 
     .slash-menu-item-content {
-      flex: 1 1 0%;
+      @apply flex-1;
 
       .slash-menu-item-slash {
-        font-size: 0.875rem;
-        font-weight: 600;
-        color: rgb(209, 213, 219);
-        opacity: 0.0;
+        @apply text-sm font-semibold text-gray-400 opacity-0;
       }
-      
+
       .slash-menu-item-description {
-        font-size: 0.875rem;
-        color: rgb(107, 114, 128);
+        @apply text-sm text-gray-500;
       }
     }
 
     &:hover {
-      background-color: rgb(249, 250, 251);
+      @apply bg-gray-50;
       .slash-menu-item-icon {
-        background-color: rgb(217, 223, 234);
+        @apply bg-gray-200;
       }
       .slash-menu-item-slash {
-        opacity: 1;
+        @apply opacity-100;
       }
     }
 
     &.active {
-      background-color: rgb(243, 244, 246);
+      @apply bg-gray-100;
 
       .slash-menu-item-icon {
-        background-color: rgb(217, 223, 234);
+        @apply bg-olive-200;
       }
 
       .slash-menu-item-slash {
-        opacity: 1;
+        @apply opacity-100;
       }
     }
   }

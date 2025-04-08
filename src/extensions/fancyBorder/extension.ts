@@ -3,7 +3,7 @@ import {
   type CommandProps,
   type RawCommands,
 } from "@tiptap/core";
-import { Editor, VueNodeViewRenderer } from "@tiptap/vue-3";
+import { VueNodeViewRenderer } from "@tiptap/vue-3";
 import NodeViewFancyBorder from "./components/NodeViewFancyBorder.vue";
 
 export interface FancyBorderOptions {
