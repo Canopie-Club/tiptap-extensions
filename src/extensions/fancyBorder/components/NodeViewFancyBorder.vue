@@ -84,33 +84,33 @@ const updateBorderStyle = (event: Event) => {
 }
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 .fancy-border-node-view {
   position: relative;
   margin: 1rem 0;
-}
 
-.fancy-border-controls {
-  display: flex;
-  gap: 1rem;
-  margin-bottom: 0.5rem;
-  background-color: #f3f4f6;
-  padding: 0.5rem;
-  border-radius: 0.25rem;
-}
+  .fancy-border-controls {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 0.5rem;
+    background-color: #f3f4f6;
+    padding: 0.5rem;
+    border-radius: 0.25rem;
 
-.control-group {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-}
+    .control-group {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
 
-.control-group label {
-  font-size: 0.875rem;
-  font-weight: 500;
-}
+      label {
+        font-size: 0.875rem;
+        font-weight: 500;
+      }
+    }
+  }
 
-.fancy-border-content {
-  position: relative;
+  .fancy-border-content {
+    position: relative;
+  }
 }
 </style>

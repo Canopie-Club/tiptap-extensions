@@ -22,7 +22,7 @@ const borderStyle = computed(() => {
 });
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 .fancy-border {
     display: block;
     background-color: rgba(59, 130, 246, 0.05);
